@@ -24,7 +24,6 @@ module.exports = {
       url_image: {
         allowNull:false,
         type: Sequelize.VARCHAR(200),
-        defaultValue:''
       },
   
     });
