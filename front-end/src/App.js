@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import Provider from './context/Provider';
