@@ -1,6 +1,6 @@
 const { user } = require('../../database/models');
-const joiLogin = require('../middleware/joiValidate');
-const token = require('../middleware/tokenLogin');
+const joiLogin = require('../middleware/JoiValidade');
+const token = require('../middleware/Token');
 
 const LoginServices = {
 
