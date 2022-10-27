@@ -27,6 +27,8 @@ const User = (sequelize, DataTypes) => {
       allowNull:false,
       type: DataTypes.VARCHAR(255),
     },
+  }, {
+    timestamps: false
   });
 
   user.associate = (models) => {

@@ -12,22 +12,22 @@ module.exports = {
 
     name: {
       allowNull:false,
-      type: Sequelize.VARCHAR(255),
+      type: Sequelize.STRING,
     },
 
     email: {
       allowNull:false,
-      type: Sequelize.VARCHAR(255),
+      type: Sequelize.STRING,
     },
 
     password: {
       allowNull:false,
-      type: Sequelize.VARCHAR(255),
+      type: Sequelize.STRING,
     },
 
     role: {
       allowNull:false,
-      type: Sequelize.VARCHAR(255),
+      type: Sequelize.STRING,
     },
 
    });

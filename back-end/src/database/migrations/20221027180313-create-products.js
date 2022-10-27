@@ -13,7 +13,7 @@ module.exports = {
 
       name: {
         allowNull:false,
-        type: Sequelize.VARCHAR(100),
+        type: Sequelize.STRING,
       },
 
       price: {
@@ -23,7 +23,7 @@ module.exports = {
 
       url_image: {
         allowNull:false,
-        type: Sequelize.VARCHAR(200),
+        type: Sequelize.STRING,
       },
   
     });

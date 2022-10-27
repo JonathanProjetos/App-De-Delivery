@@ -15,7 +15,7 @@ module.exports = {
         },
       },
 
-      sale_id: {
+      product_id: {
         type: Sequelize.INTEGER,
         foreignKey: true,
         onDelete: 'CASCADE',

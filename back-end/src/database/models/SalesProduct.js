@@ -12,7 +12,7 @@ const SaleProduct = (sequelize, DataTypes) => {
       },
     },
 
-    sale_id: {
+    product_id: {
       type: DataTypes.INTEGER,
       foreignKey: true,
       onDelete: 'CASCADE',
@@ -25,6 +25,8 @@ const SaleProduct = (sequelize, DataTypes) => {
 
     quantity: DataTypes.INTEGER,
 
+  },{
+    timestamps: false
   });
 
   saleProduct.associate = (models) => {
@@ -35,12 +37,12 @@ const SaleProduct = (sequelize, DataTypes) => {
   }
 
   saleProduct.associate = (models) => {
-    saleProduct.belongsToMany(models.product, {
+    saleProduct.belongsToMany(models.products, {
       foreignKey: 'id',
       as: 'products',
     });
   }
-  
+
   return saleProduct;
 };
 

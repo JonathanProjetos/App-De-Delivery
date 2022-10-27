@@ -54,6 +54,9 @@ const Sale = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.VARCHAR(50),
     }
+
+  },{
+    timestamps: false
   });
 
   sale.associate = (models) => {

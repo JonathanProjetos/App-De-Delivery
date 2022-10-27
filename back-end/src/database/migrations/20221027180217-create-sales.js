@@ -40,12 +40,12 @@ module.exports = {
 
     delivery_address: {
       allowNull:false,
-      type: Sequelize.VARCHAR(100),
+      type: Sequelize.STRING,
     },
 
     delivery_number: {
       allowNull:false,
-      type: Sequelize.VARCHAR(50),
+      type: Sequelize.STRING,
     },
 
     sale_date: {
@@ -55,7 +55,7 @@ module.exports = {
 
     status: {
       allowNull: false,
-      type: Sequelize.VARCHAR(50),
+      type: Sequelize.STRING,
     }
 
   });

@@ -23,6 +23,8 @@ const Product = (sequelize, DataTypes) => {
       type: DataTypes.VARCHAR(200),
     },
 
+  },{
+    timestamps: false
   });
 
   product.associate = (models) => {
