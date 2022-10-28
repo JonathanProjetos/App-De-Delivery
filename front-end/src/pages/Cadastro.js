@@ -16,20 +16,13 @@ function Cadastro() {
     });
   };
 
-  const validateEmail = () => {
-    const { email } = input;
+  const validateFields = () => {
+    const { email, name, password } = input;
+    const NAME_MINIMUM_LENGTH = 12;
+    const PW_MINIMUM_LENGTH = 6;
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validateName = () => {
-    const { name } = input;
-    return (name > 0);
-  };
-
-  const validatePass = () => {
-    const { password } = input;
-    return (password > 0);
+    return regex.test(email)
+    && password.length >= PW_MINIMUM_LENGTH && name.length >= NAME_MINIMUM_LENGTH;
   };
 
   const handleSubmit = async (event) => {
@@ -91,9 +84,7 @@ function Cadastro() {
           <button
             data-testid="common_register__button-register"
             type="submit"
-            disabled={
-              !!(!validateEmail() && !validateName() && !validatePass())
-            }
+            disabled={ !validateFields() }
             onClick={ handleSubmit }
           >
             Cadastrar
