@@ -59,7 +59,7 @@ function Login() {
         <form>
           <label htmlFor="email-input">
             <input
-              data-testId="common_login__input-email"
+              data-testid="common_login__input-email"
               type="email"
               name="email"
               id="email-input"
@@ -71,7 +71,7 @@ function Login() {
 
           <label htmlFor="password-input">
             <input
-              data-testId="common_login__input-password"
+              data-testid="common_login__input-password"
               type="password"
               name="password"
               id="password-input"
@@ -83,7 +83,7 @@ function Login() {
 
           <button
             type="button"
-            data-testId="common_login__button-login"
+            data-testid="common_login__button-login"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
           >
@@ -93,7 +93,7 @@ function Login() {
             (failedTryLogin)
               ? (
                 <p
-                  data-testId="common_login__element-invalid-email"
+                  data-testid="common_login__element-invalid-email"
                 >
                   {
                     `O endereço de e-mail ou a senha não estão corretos.
@@ -105,7 +105,7 @@ function Login() {
           }
           <button
             type="button"
-            data-testId="common_login__button-register"
+            data-testid="common_login__button-register"
             onClick={ () => navigate('/register') }
 
           >

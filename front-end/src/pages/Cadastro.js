@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { requestLogin, setToken } from '../services/request';
+import { requestLogin } from '../services/request';
 
 function Cadastro() {
   const [input, setInput] = useState({
@@ -13,7 +13,6 @@ function Cadastro() {
     setInput({
       ...input,
       [target.name]: target.value,
-      [target.password]: target.value,
     });
   };
 
@@ -35,17 +34,15 @@ function Cadastro() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const { name, email, password } = input;
     try {
-      const { token } = await requestLogin(
+      const data = await requestLogin(
         '/register',
-        { ...input },
+        { name, email, password },
       );
-      setToken(token);
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', 'customer');
-      console.log(token.data);
+      console.log(data);
     } catch (error) {
-      console.log(error);
+      console.error(error.response.data);
       setFailedToRegister(true);
     }
   };
@@ -104,7 +101,9 @@ function Cadastro() {
           {
             (failedToRegister)
               ? (
-                <p>
+                <p
+                  data-testid="common_register__element-invalid_register"
+                >
                   {
                     `Algo deu errado no seu cadastro.
                     Por favor, tente novamente.`

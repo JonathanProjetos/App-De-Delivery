@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import React from 'react';
 import './App.css';
 import Provider from './context/Provider';
@@ -9,7 +9,8 @@ function App() {
   return (
     <Provider>
       <Routes>
-        <Route path="/" element={ <Login /> } />
+        <Route exact path="/" element={ <Navigate to="/login" /> } />
+        <Route exact path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Cadastro /> } />
       </Routes>
     </Provider>
