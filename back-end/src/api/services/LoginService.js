@@ -13,10 +13,10 @@ const LoginServices = {
       where: { email, password: md5(password) },
     });
 
-    if (!verifyEmail) throw new Error('401|Pessoa não cadastrada');
+    if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
 
     const generateToken = token.generateToken(email);
-    return generateToken;
+    return {tokenData: generateToken, role: verifyEmail.role};
   },
 };
 

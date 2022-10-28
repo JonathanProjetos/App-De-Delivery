@@ -17,7 +17,7 @@ const validateLogin = (dados) => {
 
   const { error, value } = login.validate(dados);
 
-  console.log(error);
+  // console.log(error);
   if (error) {
     throw error;
   }

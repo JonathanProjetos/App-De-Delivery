@@ -16,7 +16,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/', RouterLogin);
 
 app.use((err, _req, res, _next) => {
-  console.error(err);
+  // console.error('middleware error',err);
   const [code, message] = err.message.split('|');
   return res.status(code).json({ message });
 });

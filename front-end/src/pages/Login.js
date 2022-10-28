@@ -6,6 +6,7 @@ function Login() {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [roleData, setRoleData] = useState('');
   const [input, setInput] = useState({
     email: '',
     password: '',
@@ -14,15 +15,16 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token } = await requestLogin('/login', { ...input });
+      const { token, role } = await requestLogin('/login', { ...input });
       setToken(token);
-
-      console.log('olá');
+      setRoleData(role);
+      // console.log('olá', token);
       // const { role } = await requestData('/login', { ...input });
       localStorage.setItem('token', token);
       // localStorage.setItem('role', role);
       setIsLogged(true);
     } catch (error) {
+      // alert(`${error.response.request.status} | ${error.response.data.message}`);
       setFailedTryLogin(true);
       setIsLogged(false);
     }
@@ -40,13 +42,15 @@ function Login() {
   };
 
   const isLoginValid = () => {
-    const EMAIL_VALIDATION_REGEX = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+    const EMAIL_VALIDATION_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     const PW_MINIMUM_LENGTH = 6;
     const { email, password } = input;
     return EMAIL_VALIDATION_REGEX.test(email) && password.length >= PW_MINIMUM_LENGTH;
   };
 
-  if (isLogged) return navigate('/produtos');
+  // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
+
+  if (isLogged) return navigate(`/${roleData}/products`);
 
   return (
     <section>
@@ -55,6 +59,7 @@ function Login() {
         <form>
           <label htmlFor="email-input">
             <input
+              data-testId="common_login__input-email"
               type="email"
               name="email"
               id="email-input"
@@ -66,6 +71,7 @@ function Login() {
 
           <label htmlFor="password-input">
             <input
+              data-testId="common_login__input-password"
               type="password"
               name="password"
               id="password-input"
@@ -77,6 +83,7 @@ function Login() {
 
           <button
             type="button"
+            data-testId="common_login__button-login"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
           >
@@ -85,7 +92,9 @@ function Login() {
           {
             (failedTryLogin)
               ? (
-                <p>
+                <p
+                  data-testId="common_login__element-invalid-email"
+                >
                   {
                     `O endereço de e-mail ou a senha não estão corretos.
                     Por favor, tente novamente.`
@@ -96,6 +105,7 @@ function Login() {
           }
           <button
             type="button"
+            data-testId="common_login__button-register"
             onClick={ () => navigate('/register') }
 
           >

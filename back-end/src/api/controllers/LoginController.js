@@ -6,7 +6,8 @@ const LoginController = {
     const { body } = req;
     console.log(body);
     const result = await Login.Login(body);
-    return res.status(201).json({ token: result });
+    const { tokenData, role } = result;
+    return res.status(200).json({ token: tokenData, role });
   },
 };
 
