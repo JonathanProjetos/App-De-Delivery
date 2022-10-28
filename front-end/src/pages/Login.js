@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin, setToken, requestData } from '../services/request';
+import { requestLogin, setToken } from '../services/request';
 
 function Login() {
   const navigate = useNavigate();
@@ -14,9 +14,8 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token } = await requestLogin('/login', { email, password });
+      const { token, role } = await requestLogin('/login', { email, password });
       setToken(token);
-      const { role } = await requestData('/login', { email, password });
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
       setIsLogged(true);
@@ -54,6 +53,7 @@ function Login() {
               type="email"
               name="email"
               id="email-input"
+              datatest-id="common_login__input-email"
               value={ input.email }
               onChange={ handleInputChange }
               placeholder="email@trybeer.com.br"
@@ -65,6 +65,7 @@ function Login() {
               type="password"
               name="password"
               id="password-input"
+              datatest-id="common_login__input-password"
               value={ input.password }
               onChange={ handleInputChange }
               placeholder="Password"
@@ -75,6 +76,7 @@ function Login() {
             type="button"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
+            datatest-id="common_login__button-login"
           >
             Enter
           </button>
@@ -92,6 +94,7 @@ function Login() {
           }
           <button
             type="button"
+            datatest-id="common_login__button-register"
             onClick={ () => navigate('/register') }
 
           >
