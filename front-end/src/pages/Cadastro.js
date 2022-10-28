@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { requestLogin } from '../services/request';
 
 function Cadastro() {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     name: '',
     email: '',
     password: '',
   });
   const [failedToRegister, setFailedToRegister] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
 
   const handleChange = ({ target }) => {
     setInput({
@@ -33,12 +36,16 @@ function Cadastro() {
         '/register',
         { name, email, password },
       );
+      setIsLogged(true);
       console.log(data);
     } catch (error) {
       console.error(error.response.data);
       setFailedToRegister(true);
+      setIsLogged(false);
     }
   };
+
+  if (isLogged) return navigate('/customer/products');
 
   return (
     <section>
