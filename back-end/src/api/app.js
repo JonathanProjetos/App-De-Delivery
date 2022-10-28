@@ -1,6 +1,7 @@
+require('express-async-errors');
 const express = require('express');
 const RouterLogin = require('./router/RouterLogin');
-require('express-async-errors');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/', RouterLogin)
 
 app.use((err, _req, res, _next) => {
+  console.error(err)
   const [code, message] = err.message.split('|');
   return res.status(code).json({ message });
 });

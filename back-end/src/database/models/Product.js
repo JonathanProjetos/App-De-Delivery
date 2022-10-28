@@ -1,4 +1,4 @@
-const Product = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const product = sequelize.define('product', {
 
     id: {
@@ -10,7 +10,7 @@ const Product = (sequelize, DataTypes) => {
 
     name: {
       allowNull:false,
-      type: DataTypes.VARCHAR(100),
+      type: DataTypes.STRING,
     },
 
     price: {
@@ -20,20 +20,18 @@ const Product = (sequelize, DataTypes) => {
 
     url_image: {
       allowNull:false,
-      type: DataTypes.VARCHAR(200),
+      type: DataTypes.STRING,
     },
 
   },{
     timestamps: false
   });
 
-  product.associate = (models) => {
-    product.hasMany(models.saleProduct, {
-      foreignKey: 'id',
-      as: 'saleProduct',
-    });
-  };
+  // product.associate = (models) => {
+  //   product.hasMany(models.saleProduct, {
+  //     foreignKey: 'id',
+  //     as: 'saleProduct',
+  //   });
+  // };
   return product;
 };
-
-module.exports = Product;

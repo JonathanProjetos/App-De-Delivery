@@ -1,6 +1,6 @@
 const Login = require('../services/LoginService');
 
-const Logincontroller = {
+const LoginController = {
 
   Login: async (req, res) => {
     const { body } = req;
@@ -9,4 +9,4 @@ const Logincontroller = {
   },
 };
 
-module.exports = Logincontroller;
+module.exports = LoginController;

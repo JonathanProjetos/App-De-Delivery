@@ -1,4 +1,4 @@
-const jwtCheckLogin = require('./tokenLogin');
+const jwtCheckLogin = require('./Token');
 
 module.exports = {
   loginToken: (req, _res, next) => {

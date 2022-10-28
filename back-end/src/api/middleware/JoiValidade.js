@@ -24,4 +24,4 @@ const validateLogin = (dados) => {
   return value;
 };
 
-export default validateLogin;
+module.exports = { validateLogin };

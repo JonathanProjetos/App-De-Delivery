@@ -1,24 +1,26 @@
-const SaleProduct = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const saleProduct = sequelize.define('saleProduct', {
 
     sale_id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
       references: {
-        model: 'sales',
+        model: 'sale',
         key: 'id',
       },
     },
 
     product_id: {
       type: DataTypes.INTEGER,
+      primaryKey: true,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
       references: {
-        model: 'products',
+        model: 'product',
         key: 'id',
       },
     },
@@ -30,20 +32,22 @@ const SaleProduct = (sequelize, DataTypes) => {
   });
 
   saleProduct.associate = (models) => {
-    saleProduct.belongsToMany(models.sales, {
-      foreignKey: 'id',
+    models.product.belongsToMany(models.sale, {
+      through: saleProduct,
+      foreignKey: 'sale_id',
+      otherKey: 'product_id',
       as: 'sales',
     });
   }
 
   saleProduct.associate = (models) => {
-    saleProduct.belongsToMany(models.products, {
-      foreignKey: 'id',
+    models.sale.belongsToMany(models.product, {
+      through: saleProduct,
+      foreignKey: 'product_id',
+      otherKey: 'sale_id',
       as: 'products',
     });
   }
 
   return saleProduct;
 };
-
-module.exports = SaleProduct;
