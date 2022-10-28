@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 const jwtCheckLogin = {
 
   generateToken: (email) => {
-    const token = jwt.sign({email,}, JWT_SECRET, {
+    const token = jwt.sign({ email }, JWT_SECRET, {
       expiresIn: '1d',
       algorithm: 'HS256',
     });
