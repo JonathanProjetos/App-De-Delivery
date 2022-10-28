@@ -1,7 +1,6 @@
-const { user } = require('../../database/models');
-const token = require('../middleware/Token');
-const joiRegister = require('../middleware/JoiValidade');
 const md5 = require('md5');
+const { user } = require('../../database/models');
+const joiRegister = require('../middleware/JoiValidade');
 
 const RegisterServices = {
 
@@ -14,7 +13,7 @@ const RegisterServices = {
     }
     const tokenPass = md5(password);
     console.log(tokenPass);
-    const newUser = await user.create({ name, email, password: tokenPass, role: 'customer'});
+    const newUser = await user.create({ name, email, password: tokenPass, role: 'customer' });
     return newUser;
   },
 };
