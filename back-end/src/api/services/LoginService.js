@@ -13,7 +13,6 @@ const LoginServices = {
       where: { email, password: md5(password) },
     });
 
-    console.log(verifyEmail.password);
     if (!verifyEmail) throw new Error('401|Pessoa não cadastrada');
 
 

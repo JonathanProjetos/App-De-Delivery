@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin, setToken, requestData } from '../services/request';
+import { requestLogin, setToken } from '../services/request';
 
 function Login() {
   const navigate = useNavigate();
@@ -14,11 +14,13 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token } = await requestLogin('/login', { email, password });
+      const { token } = await requestLogin('/login', { ...input });
       setToken(token);
-      const { role } = await requestData('/login', { email, password });
+
+      console.log('olá');
+      // const { role } = await requestData('/login', { ...input });
       localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
+      // localStorage.setItem('role', role);
       setIsLogged(true);
     } catch (error) {
       setFailedTryLogin(true);
@@ -36,14 +38,16 @@ function Login() {
       [target.name]: target.value,
     });
   };
+
   const isLoginValid = () => {
-    const EMAIL_VALIDATION_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const EMAIL_VALIDATION_REGEX = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
     const PW_MINIMUM_LENGTH = 6;
     const { email, password } = input;
     return EMAIL_VALIDATION_REGEX.test(email) && password.length >= PW_MINIMUM_LENGTH;
   };
 
   if (isLogged) return navigate('/produtos');
+
   return (
     <section>
       <div />
