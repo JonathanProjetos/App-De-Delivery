@@ -1,6 +1,5 @@
-// import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-// import { requestLogin, setToken, requestData } from '../services/request';
+import { requestLogin, setToken } from '../services/request';
 
 function Cadastro() {
   const [input, setInput] = useState({
@@ -8,11 +7,13 @@ function Cadastro() {
     email: '',
     password: '',
   });
+  const [failedToRegister, setFailedToRegister] = useState(false);
 
   const handleChange = ({ target }) => {
     setInput({
       ...input,
       [target.name]: target.value,
+      [target.password]: target.value,
     });
   };
 
@@ -22,20 +23,32 @@ function Cadastro() {
     return regex.test(email);
   };
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const { token } = await requestLogin('/login', { email, password });
-  //     setToken(token);
-  //     const { role } = await requestData('/login', { email, password });
-  //     localStorage.setItem('token', token);
-  //     localStorage.setItem('role', role);
-  //     setIsLogged(true);
-  //   } catch (error) {
-  //     setFailedTryLogin(true);
-  //     setIsLogged(false);
-  //   }
-  // };
+  const validateName = () => {
+    const { name } = input;
+    return (name > 0);
+  };
+
+  const validatePass = () => {
+    const { password } = input;
+    return (password > 0);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { token } = await requestLogin(
+        '/register',
+        { ...input },
+      );
+      setToken(token);
+      localStorage.setItem('token', token);
+      localStorage.setItem('role', 'customer');
+      console.log(token.data);
+    } catch (error) {
+      console.log(error);
+      setFailedToRegister(true);
+    }
+  };
 
   return (
     <section>
@@ -70,7 +83,7 @@ function Cadastro() {
             Senha:
             <input
               data-testid="common_register__input-password"
-              value={ input.assword }
+              value={ input.password }
               name="password"
               id="password"
               type="password"
@@ -81,11 +94,25 @@ function Cadastro() {
           <button
             data-testid="common_register__button-register"
             type="submit"
-            disabled={ !validateEmail() }
-            // onClick={ handleSubmit }
+            disabled={
+              !!(!validateEmail() && !validateName() && !validatePass())
+            }
+            onClick={ handleSubmit }
           >
             Cadastrar
           </button>
+          {
+            (failedToRegister)
+              ? (
+                <p>
+                  {
+                    `Algo deu errado no seu cadastro.
+                    Por favor, tente novamente.`
+                  }
+                </p>
+              )
+              : null
+          }
         </form>
       </div>
     </section>
