@@ -16,7 +16,7 @@ const LoginServices = {
     if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
 
     const generateToken = token.generateToken(email);
-    return { tokenData: generateToken, role: verifyEmail.role };
+    return { tokenData: generateToken, role: verifyEmail.role, name: verifyEmail.name };
   },
 };
 

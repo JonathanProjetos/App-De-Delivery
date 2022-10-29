@@ -15,13 +15,13 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token, role } = await requestLogin('/login', { ...input });
+      const { token, role, name } = await requestLogin('/login', { ...input });
       setToken(token);
       setRoleData(role);
-      // console.log('olá', token);
-      // const { role } = await requestData('/login', { ...input });
+      console.log(name);
       localStorage.setItem('token', token);
-      // localStorage.setItem('role', role);
+      localStorage.setItem('role', role);
+      localStorage.setItem('name', name);
       setIsLogged(true);
     } catch (error) {
       // alert(`${error.response.request.status} | ${error.response.data.message}`);

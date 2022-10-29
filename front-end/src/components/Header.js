@@ -1,23 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
   const navigate = useNavigate();
+  const [nameUser, setNameUser] = useState('');
 
-  const redirectMyRequest = () => {
-    const pedidos = navigate('/');
-    return pedidos;
-  };
-
-  const redirectProducts = () => {
-    const produtos = navigate();
-    return produtos;
-  };
-
-  const redirectLogin = () => {
-    const logOut = navigate();
-    return logOut;
-  };
+  useEffect(() => {
+    const storage = localStorage.getItem('name');
+    setNameUser(storage);
+  }, []);
 
   return (
     <div>
@@ -25,14 +16,14 @@ function Header() {
         <button
           type="button"
           data-testId="customer_products__element-navbar-link-products"
-          onClick={ redirectProducts }
+          onClick={ () => navigate('/costumer/products') }
         >
           Produtos
         </button>
         <button
           type="button"
           data-testId="customer_products__element-navbar-link-orders"
-          onClick={ redirectMyRequest }
+          onClick={ () => navigate('/costumer/orders') }
         >
           Meus Pedidos
         </button>
@@ -43,13 +34,13 @@ function Header() {
             <p
               data-testId="customer_products__element-navbar-user-full-name"
             >
-              {data.name}
+              {nameUser}
             </p>
           </div>
           <button
             type="button"
             data-testId="customer_products__element-navbar-link-logout"
-            onClick={ redirectLogin }
+            onClick={ () => navigate('/login') }
           >
             Sair
           </button>
