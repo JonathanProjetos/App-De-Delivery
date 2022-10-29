@@ -34,6 +34,24 @@ function Login() {
     setFailedTryLogin(false);
   }, [input.email, input.password]);
 
+  useEffect(() => {
+    if (isLogged) {
+      switch (roleData) {
+      case 'administrator':
+        navigate('/admin/manage');
+        break;
+      case 'seller':
+        navigate('/seller/orders');
+        break;
+      case 'customer':
+        navigate('/customer/products');
+        break;
+      default:
+        break;
+      }
+    }
+  }, [roleData, navigate, isLogged]);
+
   const handleInputChange = ({ target }) => {
     setInput({
       ...input,
@@ -50,7 +68,7 @@ function Login() {
 
   // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
 
-  if (isLogged) return navigate(`/${roleData}/products`);
+  // if (isLogged) return navigate(`/${roleData}/products`);
 
   return (
     <section>
