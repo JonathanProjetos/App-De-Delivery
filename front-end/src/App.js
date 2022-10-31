@@ -4,6 +4,9 @@ import './App.css';
 import Provider from './context/Provider';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
+import Produtos from './pages/Produtos';
+import MeusPedidos from './pages/MeusPedidos';
+import Gerenciamento from './pages/Gerenciamento';
 
 function App() {
   return (
@@ -12,6 +15,9 @@ function App() {
         <Route exact path="/" element={ <Navigate to="/login" /> } />
         <Route exact path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Cadastro /> } />
+        <Route exact path="/costumer/products" element={ <Produtos /> } />
+        <Route exact path="/costumer/orders" element={ <MeusPedidos /> } />
+        <Route exact path="/administrador/manager" element={ <Gerenciamento /> } />
       </Routes>
     </Provider>
   );
