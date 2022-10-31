@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+  const navigate = useNavigate();
   const [nameUser, setNameUser] = useState('');
 
   useEffect(() => {
@@ -10,17 +11,17 @@ function Header() {
   }, []);
 
   const redirectProducts = () => {
-    const products = <Navigate to="/costumer/products" />;
+    const products = navigate('/customer/products');
     return products;
   };
 
   const redirectOrder = () => {
-    const products = <Navigate to="/costumer/orders" />;
+    const products = navigate('/customer/orders');
     return products;
   };
 
   const logOut = () => {
-    const products = <Navigate to="/login" />;
+    const products = navigate('/login');
     return products;
   };
 
