@@ -51,7 +51,7 @@ function Login() {
 
   // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
 
-  if (isLogged) return <Navigate to="/costumer/products" />;
+  if (isLogged) return <Navigate to="/custumer/products" />;
 
   return (
     <section>
