@@ -7,6 +7,7 @@ import Cadastro from './pages/Cadastro';
 import Produtos from './pages/Produtos';
 import MeusPedidos from './pages/MeusPedidos';
 import Gerenciamento from './pages/Gerenciamento';
+import Checkout from './pages/Checkout';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/register" element={ <Cadastro /> } />
         <Route exact path="/customer/products" element={ <Produtos /> } />
         <Route exact path="/customer/orders" element={ <MeusPedidos /> } />
+        <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/administrador/manager" element={ <Gerenciamento /> } />
       </Routes>
     </Provider>
