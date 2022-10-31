@@ -29,14 +29,14 @@ function Header() {
       <div>
         <button
           type="button"
-          data-testId="customer_products__element-navbar-link-products"
+          data-testid="customer_products__element-navbar-link-products"
           onClick={ redirectProducts }
         >
           Produtos
         </button>
         <button
           type="button"
-          data-testId="customer_products__element-navbar-link-orders"
+          data-testid="customer_products__element-navbar-link-orders"
           onClick={ redirectOrder }
         >
           Meus Pedidos
@@ -46,14 +46,14 @@ function Header() {
         <div>
           <div>
             <p
-              data-testId="customer_products__element-navbar-user-full-name"
+              data-testid="customer_products__element-navbar-user-full-name"
             >
               {nameUser}
             </p>
           </div>
           <button
             type="button"
-            data-testId="customer_products__element-navbar-link-logout"
+            data-testid="customer_products__element-navbar-link-logout"
             onClick={ logOut }
           >
             Sair

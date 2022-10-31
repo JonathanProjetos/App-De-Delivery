@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { requestLogin, setToken } from '../services/request';
 
 function Login() {
   const navigate = useNavigate();
+
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const [roleData, setRoleData] = useState('');
@@ -50,7 +51,7 @@ function Login() {
 
   // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
 
-  if (isLogged) return navigate(`/${roleData}/products`);
+  if (isLogged) return <Navigate to="/costumer/products" />;
 
   return (
     <section>
