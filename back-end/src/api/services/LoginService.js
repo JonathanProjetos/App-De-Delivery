@@ -18,14 +18,14 @@ const LoginServices = {
     const generateToken = token.generateToken(email);
     return { tokenData: generateToken, role: verifyEmail.role };
   },
-  loginValidate: async (authorization) => {
-    const tokenData = token.validateToken(authorization);
-    const { email } = tokenData;
+  loginValidate: async (email) => {
+    // const tokenData = token.validateToken(authorization);
+    // const { email } = tokenData;
     const verifyEmail = await user.findOne({
       where: { email },
     });
     if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
-    return { email, role: verifyEmail.role, token: authorization };
+    return { verifyEmail };
   },
 };
 
