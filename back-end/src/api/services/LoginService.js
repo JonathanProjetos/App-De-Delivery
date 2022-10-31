@@ -25,7 +25,7 @@ const LoginServices = {
       where: { email },
     });
     if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
-    return verifyEmail;
+    return { email, role: verifyEmail.role, token: authorization };
   },
 };
 
