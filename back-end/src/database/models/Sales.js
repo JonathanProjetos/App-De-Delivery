@@ -1,4 +1,4 @@
-const Sale = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const sale = sequelize.define('sale', {
     id: {
       allowNull: false,
@@ -18,7 +18,6 @@ const Sale = (sequelize, DataTypes) => {
       },
     },
 
-
     seller_id: {
       type: DataTypes.INTEGER,
       foreignKey: true,
@@ -37,12 +36,12 @@ const Sale = (sequelize, DataTypes) => {
 
     delivery_address: {
       allowNull:false,
-      type: DataTypes.VARCHAR(100),
+      type: DataTypes.STRING,
     },
 
     delivery_number: {
       allowNull:false,
-      type: DataTypes.VARCHAR(50),
+      type: DataTypes.STRING,
     },
 
     sale_date: {
@@ -52,7 +51,7 @@ const Sale = (sequelize, DataTypes) => {
 
     status: {
       allowNull: false,
-      type: DataTypes.VARCHAR(50),
+      type: DataTypes.STRING,
     }
 
   },{
@@ -67,7 +66,7 @@ const Sale = (sequelize, DataTypes) => {
 
     sale.belongsTo(models.user, {
       foreignKey: 'seller_id',
-      as: 'user',
+      as: 'seller',
     });
 
   };

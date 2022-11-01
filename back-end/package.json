@@ -8,6 +8,7 @@
   },
   "engineStrict": true,
   "private": true,
+  "type": "commonjs",
   "scripts": {
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
@@ -20,11 +21,14 @@
   "dependencies": {
     "@hapi/boom": "9.1.4",
     "@types/express": "4.17.13",
+    "bcryptjs": "^2.4.3",
     "body-parser": "1.19.2",
     "cors": "2.8.5",
     "dotenv": "16.0.0",
     "express": "4.17.3",
+    "express-async-errors": "^3.1.1",
     "express-rescue": "1.1.31",
+    "joi": "^17.6.4",
     "jsonwebtoken": "8.5.1",
     "md5": "2.3.0",
     "multer": "1.4.4",
