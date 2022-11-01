@@ -62,13 +62,14 @@ function Produtos() {
       <Header />
       <button
         type="button"
+        disabled={ total === 0 }
+        data-testid="customer_products__button-cart"
         onClick={ () => navigate('/customer/checkout') }
-        datatest-id="customer_products__checkout-bottom-value"
       >
-        VER CARRINHO :
-        R$
-        {' '}
-        {total}
+        Ver Carrinho: R$
+        <span data-testid="customer_products__checkout-bottom-value">
+          {total.toString().replace('.', ',')}
+        </span>
       </button>
       <div>
         { products.map((product) => (

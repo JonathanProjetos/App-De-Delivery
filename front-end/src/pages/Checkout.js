@@ -3,18 +3,26 @@ import { mockitens, pessoa } from '../mock/checkout';
 import Header from '../components/Header';
 
 function Checkout() {
-  const [datafilter, setDataFilter] = useState([]);
+  const [dataCart, setDataCart] = useState([]);
+  const [total, setTotal] = useState(0);
   const [dados, setDados] = useState({
     option: '',
     endereco: '',
     numero: '',
   });
-  console.log(datafilter);
 
   useEffect(() => {
-    setDataFilter([...mockitens]);
-  }, []);
+    // setDataFilter([...mockitens]);
+    const getCart = JSON.parse(localStorage.getItem('cart'));
+    const getTotal = JSON.parse(localStorage.getItem('total'));
+    getCart.forEach((i) => {
+      i.totalProduct = (i.price * i.quantity).toFixed(2);
+    });
+    setDataCart(getCart);
+    setTotal(getTotal);
+  }, [setDataCart]);
 
+  console.log(dataCart);
   const handleChange = ({ target }) => {
     const { name, value } = target;
     setDados((prevState) => ({
@@ -31,9 +39,20 @@ function Checkout() {
 
   const handleClickRemove = ({ target }) => {
     // subistituir mock aqui
-    const removeItem = datafilter.filter((i, index) => index !== Number(target.id));
-    setDataFilter(removeItem);
+    const removeItem = dataCart.filter((i, index) => index !== Number(target.id));
+    localStorage.setItem('cart', JSON.stringify(removeItem));
+    setDataCart(removeItem);
+    const totalValue = removeItem.reduce((
+      acc,
+      { price, quantity },
+    ) => acc + (price * quantity), 0).toFixed(2);
+    localStorage.setItem('total', JSON.stringify(totalValue));
+    setTotal(totalValue);
   };
+
+  useEffect(() => {
+
+  }, []);
 
   const titulos = [
     'Item',
@@ -43,7 +62,7 @@ function Checkout() {
     'Sub-total',
     'Remover Item',
   ];
-
+  // console.log(().replace('.', ','));
   return (
     <div>
       <Header />
@@ -59,42 +78,42 @@ function Checkout() {
           </thead>
           <tbody>
             { // mock precisa ser alterado 'mockitens', 'pessoa'.
-              datafilter.map((data, index) => (
+              dataCart.map((data, index) => (
                 <tr key={ index }>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-item-number-${index}`
                     }
                   >
-                    {data.item}
+                    {(index + 1)}
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-name-${index}`
                     }
                   >
-                    {data.descrição}
+                    {data.name}
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-quantity-${index}`
                     }
                   >
-                    {data.quantidade}
+                    {data.quantity}
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-unit-price-${index}`
                     }
                   >
-                    {data.valorUnit}
+                    {data.price.replace('.', ',')}
                   </td>
                   <td
-                    data-testis={
+                    data-testid={
                       `customer_checkout__element-order-table-sub-total-${index}`
                     }
                   >
-                    {data.subtotal}
+                    {`R$ ${data.totalProduct.replace('.', ',')}`}
                   </td>
                   <td>
                     <button
@@ -116,7 +135,7 @@ function Checkout() {
         <h2
           data-testid="customer_checkout__element-order-total-price"
         >
-          Total:R$28,46
+          {`Total: R$ ${total.toString().replace('.', ',')}`}
 
         </h2>
       </div>
