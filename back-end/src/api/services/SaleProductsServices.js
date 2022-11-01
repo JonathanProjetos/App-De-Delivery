@@ -20,7 +20,7 @@ const SaleProducts = {
         .map((iten) => ({ saleId: result.id, productId: iten }));
         
       await saleProduct.bulkcreate(postOrder, { transaction });
-    });
+    }); 
     return transactionOrder;
   },
 
