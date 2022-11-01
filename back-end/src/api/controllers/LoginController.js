@@ -12,7 +12,7 @@ const LoginController = {
   loginValidate: async (req, res) => {
     const { email } = req.user;
     await LoginService.loginValidate(email);
-    return res.status(200).json({ message: 'ok' });
+    return res.status(200).json(true);
   },
   // loginValidate: async (req, res) => {
   //   const { email } = req.user;

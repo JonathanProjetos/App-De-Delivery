@@ -18,7 +18,7 @@ function Produtos() {
       try {
         setToken(token);
         const validToken = await validLogin('/login/validate');
-        if (validToken.message !== 'ok') {
+        if (!validToken) {
           navigate('/login');
         }
       } catch (error) {
