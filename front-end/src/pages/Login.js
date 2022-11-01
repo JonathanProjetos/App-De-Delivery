@@ -80,6 +80,7 @@ function Login() {
               type="email"
               name="email"
               id="email-input"
+              datatest-id="common_login__input-email"
               value={ input.email }
               onChange={ handleInputChange }
               placeholder="email@trybeer.com.br"
@@ -92,6 +93,7 @@ function Login() {
               type="password"
               name="password"
               id="password-input"
+              datatest-id="common_login__input-password"
               value={ input.password }
               onChange={ handleInputChange }
               placeholder="Password"
@@ -103,6 +105,7 @@ function Login() {
             data-testid="common_login__button-login"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
+            datatest-id="common_login__button-login"
           >
             Enter
           </button>
@@ -124,7 +127,6 @@ function Login() {
             type="button"
             data-testid="common_login__button-register"
             onClick={ () => navigate('/register') }
-
           >
             Ainda não tenho conta
           </button>
