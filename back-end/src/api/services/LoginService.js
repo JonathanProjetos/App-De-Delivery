@@ -16,8 +16,31 @@ const LoginServices = {
     if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
 
     const generateToken = token.generateToken(email);
-    return { tokenData: generateToken, role: verifyEmail.role, name: verifyEmail.name };
+
+    return { 
+      token: generateToken,
+      role: verifyEmail.role,
+      name: verifyEmail.name,
+      email:verifyEmail.email
+    };
   },
+  
+  loginValidate: async (email) => {
+    const verifyEmail = await user.findOne({
+      where: { email },
+    });
+    if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
+    return { verifyEmail };
+  },
+  // loginValidate: async (email) => {
+  //   // const tokenData = token.validateToken(authorization);
+  //   // const { email } = tokenData;
+  //   const verifyEmail = await user.findOne({
+  //     where: { email },
+  //   });
+  //   if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
+  //   return { verifyEmail };
+  // },
 };
 
 module.exports = LoginServices;

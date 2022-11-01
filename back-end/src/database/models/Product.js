@@ -24,14 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     },
 
   },{
+    underscored: true,
     timestamps: false
   });
 
-  // product.associate = (models) => {
-  //   product.hasMany(models.saleProduct, {
-  //     foreignKey: 'id',
-  //     as: 'saleProduct',
-  //   });
-  // };
   return product;
 };

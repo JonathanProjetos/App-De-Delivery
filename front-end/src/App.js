@@ -1,25 +1,27 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import React from 'react';
 import './App.css';
-import Provider from './context/Provider';
+import DeliveryProvider from './context/Provider';
+import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
-import Produtos from './pages/Produtos';
 import MeusPedidos from './pages/MeusPedidos';
+import Produtos from './pages/Produtos';
 import Gerenciamento from './pages/Gerenciamento';
 
 function App() {
   return (
-    <Provider>
+    <DeliveryProvider>
       <Routes>
         <Route exact path="/" element={ <Navigate to="/login" /> } />
         <Route exact path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Cadastro /> } />
-        <Route exact path="/customer/products" element={ <Produtos /> } />
         <Route exact path="/customer/orders" element={ <MeusPedidos /> } />
+        <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/administrador/manager" element={ <Gerenciamento /> } />
+        <Route exact path="/customer/products" element={ <Produtos /> } />
       </Routes>
-    </Provider>
+    </DeliveryProvider>
   );
 }
 

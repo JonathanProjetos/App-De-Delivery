@@ -10,6 +10,16 @@ export const setToken = (token) => {
 
 export const requestData = async (endpoint) => {
   const { data } = await api.get(endpoint);
+  if (endpoint === '/customer/products') {
+    data.forEach((product) => {
+      product.quantity = 0;
+    });
+  }
+  return data;
+};
+
+export const validLogin = async (endpoint) => {
+  const { data } = await api.post(endpoint);
   return data;
 };
 

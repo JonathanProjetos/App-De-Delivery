@@ -17,7 +17,7 @@
     "pretest": "npm start",
     "test": "jest -i --forceExit --verbose --config=./jest.config.js",
     "test:dev": "NODE_ENV=development npm run jest -i --forceExit --config=./jest.config.js",
-    "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev 03",
+    "test:dev:open": "NODE_ENV=development HEADLESS=false npm run test:dev",
     "test:dev:report": "./__tests__/reports/generate.sh"
   },
   "repository": {

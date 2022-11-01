@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { requestLogin, setToken } from '../services/request';
 
 function Login() {
@@ -7,7 +7,7 @@ function Login() {
 
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
-  // const [roleData, setRoleData] = useState('');
+  const [roleData, setRoleData] = useState('');
   const [input, setInput] = useState({
     email: '',
     password: '',
@@ -16,13 +16,10 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token, role, name } = await requestLogin('/login', { ...input });
+      const { token, role, name, email } = await requestLogin('/login', { ...input });
       setToken(token);
-      // setRoleData(role);
-      console.log(name);
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
-      localStorage.setItem('name', name);
+      setRoleData(role);
+      localStorage.setItem('user', JSON.stringify({ token, role, name, email }));
       setIsLogged(true);
     } catch (error) {
       console.log(error);
@@ -35,6 +32,24 @@ function Login() {
   useEffect(() => {
     setFailedTryLogin(false);
   }, [input.email, input.password]);
+
+  useEffect(() => {
+    if (isLogged) {
+      switch (roleData) {
+      case 'administrator':
+        navigate('/admin/manage');
+        break;
+      case 'seller':
+        navigate('/seller/orders');
+        break;
+      case 'customer':
+        navigate('/customer/products');
+        break;
+      default:
+        break;
+      }
+    }
+  }, [roleData, navigate, isLogged]);
 
   const handleInputChange = ({ target }) => {
     setInput({
@@ -52,7 +67,7 @@ function Login() {
 
   // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
 
-  if (isLogged) return <Navigate to="/customer/products" />;
+  // if (isLogged) return navigate(`/${roleData}/products`);
 
   return (
     <section>

@@ -28,6 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
 
   },{
+    underscored: true,
     timestamps: false
   });
 
