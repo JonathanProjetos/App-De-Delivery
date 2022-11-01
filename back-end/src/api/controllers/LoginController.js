@@ -9,6 +9,19 @@ const LoginController = {
     const { tokenData, role, name } = result;
     return res.status(200).json({ token: tokenData, role, name });
   },
+
+  loginValidate: async (req, res) => {
+    const { email } = req.user;
+    try {
+      const result = await Login.loginValidate(email);
+      if (result) {
+        return res.status(200).json({ message: 'ok' });
+      } 
+        throw new Error('404|Pessoa não cadastrada');
+    } catch (err) {
+      return res.status(401).json({ message: err.message });
+    }
+  },
 };
 
 module.exports = LoginController;

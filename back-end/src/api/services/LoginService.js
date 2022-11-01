@@ -18,6 +18,16 @@ const LoginServices = {
     const generateToken = token.generateToken(email);
     return { tokenData: generateToken, role: verifyEmail.role, name: verifyEmail.name };
   },
+  
+  loginValidate: async (email) => {
+    // const tokenData = token.validateToken(authorization);
+    // const { email } = tokenData;
+    const verifyEmail = await user.findOne({
+      where: { email },
+    });
+    if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
+    return { verifyEmail };
+  },
 };
 
 module.exports = LoginServices;
