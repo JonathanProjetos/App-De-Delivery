@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestData, setToken } from '../services/request';
+import { requestData, setToken, validLogin } from '../services/request';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
 
@@ -14,11 +14,18 @@ function Produtos() {
     // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
-    const validToken = setToken(token);
-    console.log('test', validToken);
-    if (validToken) {
-      navigate('/login');
-    }
+    const requestValid = async () => {
+      try {
+        setToken(token);
+        const validToken = await validLogin('/login/validate');
+        if (validToken.message !== 'ok') {
+          navigate('/login');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    requestValid();
   }, [navigate]);
 
   useEffect(() => {
