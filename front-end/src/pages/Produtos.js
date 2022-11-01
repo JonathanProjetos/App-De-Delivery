@@ -32,8 +32,7 @@ function Produtos() {
 
   useEffect(() => {
     if (updateTotal) {
-      const totalCart = localStorage.getItem('total');
-      console.log(totalCart);
+      const totalCart = JSON.parse(localStorage.getItem('total'));
       setTotal(totalCart);
     }
     setUpdateTotal(false);

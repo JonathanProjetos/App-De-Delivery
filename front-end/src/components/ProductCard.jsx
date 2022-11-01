@@ -6,13 +6,14 @@ function ProductCard({ product, setUpdateTotal }) {
   const { cart, setCart } = useContext(Context);
   const [productCard, setProductCard] = useState(product);
   useEffect(() => {
-    const cartStorage = localStorage.getItem('cart');
+    const cartStorage = JSON.parse(localStorage.getItem('cart'));
+    console.log(cartStorage);
     if (cartStorage) {
       const totalValue = cart.reduce((
         acc,
         { price, quantity },
       ) => acc + (price * quantity), 0).toFixed(2);
-      localStorage.setItem('total', totalValue);
+      localStorage.setItem('total', JSON.stringify(totalValue));
     }
   }, [cart]);
 
@@ -26,9 +27,8 @@ function ProductCard({ product, setUpdateTotal }) {
       }));
       const oldCart = cart.filter((item) => item.id !== productCard.id);
       setCart([...oldCart, { ...productCard, quantity: quantityUpdate }]);
-      localStorage.setItem('cart', JSON.stringify(
-        [...oldCart, { ...productCard, quantity: quantityUpdate }],
-      ));
+      const test = [...oldCart, { ...productCard, quantity: quantityUpdate }];
+      localStorage.setItem('cart', JSON.stringify(test));
       setUpdateTotal(true);
     } catch (error) {
       console.log(error);
