@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
-const jwtKey = require("fs")
-  .readFileSync("./jwt.evaluation.key", { encoding: "utf-8" });
+const jwtKey = require('fs')
+  .readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
 // const JWT_SECRET = process.env.JWT_SECRET || 'secret_key';
 
