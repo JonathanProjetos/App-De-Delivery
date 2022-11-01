@@ -6,8 +6,9 @@ function Header() {
   const [nameUser, setNameUser] = useState('');
 
   useEffect(() => {
-    const storage = localStorage.getItem('name');
-    setNameUser(storage);
+    const storage = JSON.parse(localStorage.getItem('user'));
+    const { name } = storage;
+    setNameUser(name);
   }, []);
 
   const redirectProducts = () => {
@@ -22,6 +23,7 @@ function Header() {
 
   const logOut = () => {
     const products = navigate('/login');
+    localStorage.setItem('user', '');
     return products;
   };
 

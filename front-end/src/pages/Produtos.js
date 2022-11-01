@@ -1,13 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestData } from '../services/request';
+import { requestData, setToken } from '../services/request';
 import ProductCard from '../components/ProductCard';
+import Header from '../components/Header';
 
 function Produtos() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [updateTotal, setUpdateTotal] = useState(false);
   const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    // validação para token ao acessar a page
+    const getToken = JSON.parse(localStorage.getItem('user'));
+    const { token } = getToken;
+    const validToken = setToken(token);
+    console.log('test', validToken);
+    if (validToken) {
+      navigate('/login');
+    }
+  }, [navigate]);
 
   useEffect(() => {
     const loginValidate = async () => {
@@ -21,6 +33,7 @@ function Produtos() {
         // data.forEach((product) => {
         //   product.quantity = 0;
         // });
+        // console.log(data);
         setProducts(data);
       } catch (error) {
         // navigate('/login');
@@ -35,12 +48,15 @@ function Produtos() {
       const totalCart = localStorage.getItem('total');
       console.log(totalCart);
       setTotal(totalCart);
+      const test = localStorage.getItem('cart');
+      console.log(test);
     }
     setUpdateTotal(false);
   }, [updateTotal]);
 
   return (
     <section>
+      <Header />
       <button
         type="button"
         onClick={ () => navigate('/customer/checkout') }

@@ -7,7 +7,7 @@ function Login() {
 
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
-  // const [roleData, setRoleData] = useState('');
+  const [roleData, setRoleData] = useState('');
   const [input, setInput] = useState({
     email: '',
     password: '',
@@ -16,13 +16,10 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token, role, name } = await requestLogin('/login', { ...input });
+      const { token, role, name, email } = await requestLogin('/login', { ...input });
       setToken(token);
-      // setRoleData(role);
-      console.log(name);
-      localStorage.setItem('token', token);
-      localStorage.setItem('role', role);
-      localStorage.setItem('name', name);
+      setRoleData(role);
+      localStorage.setItem('user', JSON.stringify({ token, role, name, email }));
       setIsLogged(true);
     } catch (error) {
       console.log(error);
