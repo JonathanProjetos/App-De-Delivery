@@ -5,6 +5,7 @@ import Context from '../context/Context';
 function ProductCard({ product, setUpdateTotal }) {
   const { cart, setCart } = useContext(Context);
   const [productCard, setProductCard] = useState(product);
+  const [quantityState, setQuantityState] = useState(0);
   useEffect(() => {
     const cartStorage = localStorage.getItem('cart');
     if (cartStorage) {
@@ -16,6 +17,20 @@ function ProductCard({ product, setUpdateTotal }) {
     }
   }, [cart]);
 
+  const handleChange = ({ target: { value } }) => {
+    if (Number(value) > 0) {
+      setQuantityState(Number(value));
+      setProductCard({ ...productCard, quantity: Number(value) });
+      const oldCart = cart.filter((item) => item.id !== productCard.id);
+      setCart([...oldCart, { ...productCard, quantity: Number(value) }]);
+      const test = [...oldCart, { ...productCard, quantity: Number(value) }];
+      localStorage.setItem('cart', JSON.stringify(test));
+      setUpdateTotal(true);
+    } else {
+      // setQuantityState(0)
+    }
+  };
+
   const incrementar = () => {
     try {
       const { quantity } = productCard;
@@ -24,6 +39,7 @@ function ProductCard({ product, setUpdateTotal }) {
         ...prev,
         quantity: quantityUpdate,
       }));
+      setQuantityState(quantityUpdate);
       const oldCart = cart.filter((item) => item.id !== productCard.id);
       setCart([...oldCart, { ...productCard, quantity: quantityUpdate }]);
       const test = [...oldCart, { ...productCard, quantity: quantityUpdate }];
@@ -45,6 +61,7 @@ function ProductCard({ product, setUpdateTotal }) {
       ...prev,
       quantity: quantityUpdate,
     }));
+    setQuantityState(quantityUpdate);
     setUpdateTotal(true);
     const oldCart = cart.filter((item) => item.id !== productCard.id);
     if (quantityUpdate === 0) {
@@ -73,7 +90,7 @@ function ProductCard({ product, setUpdateTotal }) {
             name={ productCard.name }
             datatest-id={ `customer_products__element-card-price-${productCard.id}` }
           >
-            {productCard.price}
+            {productCard.price.replace('.', ',')}
           </p>
           <img
             name={ productCard.name }
@@ -91,13 +108,13 @@ function ProductCard({ product, setUpdateTotal }) {
           >
             -
           </button>
-          <p
+          <input
             data-testid={ `customer_products__button-card-rm-item-${productCard.id}` }
             name={ productCard.name }
-          >
-            {productCard.quantity}
-
-          </p>
+            type="number"
+            value={ quantityState }
+            onChange={ handleChange }
+          />
           <button
             type="button"
             data-testid={ `customer_products__button-card-add-item-${productCard.id}` }
