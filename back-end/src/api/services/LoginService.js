@@ -21,7 +21,7 @@ const LoginServices = {
       token: generateToken,
       role: verifyEmail.role,
       name: verifyEmail.name,
-      email:verifyEmail.email
+      email: verifyEmail.email,
     };
   },
   
