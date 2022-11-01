@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { mockitens, pessoa } from '../mock/checkout';
+import { pessoa } from '../mock/checkout';
 import Header from '../components/Header';
 
 function Checkout() {
