@@ -70,6 +70,8 @@ function ProductCard({ product, setUpdateTotal }) {
             name={ productCard.name }
             datatest-id={ `customer_products__element-card-price-${productCard.id}` }
           >
+            R$
+            {' '}
             {productCard.price}
           </p>
           <img
