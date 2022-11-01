@@ -40,7 +40,6 @@ function Produtos() {
         // data.forEach((product) => {
         //   product.quantity = 0;
         // });
-        // console.log(data);
         setProducts(data);
       } catch (error) {
         // navigate('/login');
@@ -52,11 +51,8 @@ function Produtos() {
 
   useEffect(() => {
     if (updateTotal) {
-      const totalCart = localStorage.getItem('total');
-      console.log(totalCart);
+      const totalCart = JSON.parse(localStorage.getItem('total'));
       setTotal(totalCart);
-      const test = localStorage.getItem('cart');
-      console.log(test);
     }
     setUpdateTotal(false);
   }, [updateTotal]);

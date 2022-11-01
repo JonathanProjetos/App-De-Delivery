@@ -4,9 +4,8 @@ import Context from './Context';
 
 function DeliveryProvider({ children }) {
   const [cart, setCart] = useState([]);
-  localStorage.setItem('cart', cart);
-  localStorage.setItem('total', 0);
-
+  localStorage.setItem('cart', JSON.stringify(cart));
+  localStorage.setItem('total', JSON.stringify(0));
   const contextType = useMemo(() => ({
     cart, setCart,
   }), [cart]);
