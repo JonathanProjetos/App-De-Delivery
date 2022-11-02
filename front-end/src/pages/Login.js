@@ -4,6 +4,7 @@ import { requestLogin, setToken } from '../services/request';
 
 function Login() {
   const navigate = useNavigate();
+
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const [roleData, setRoleData] = useState('');
@@ -15,15 +16,13 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token, role } = await requestLogin('/login', { ...input });
+      const { token, role, name, email } = await requestLogin('/login', { ...input });
       setToken(token);
       setRoleData(role);
-      // console.log('olá', token);
-      // const { role } = await requestData('/login', { ...input });
-      localStorage.setItem('token', token);
-      // localStorage.setItem('role', role);
+      localStorage.setItem('user', JSON.stringify({ token, role, name, email }));
       setIsLogged(true);
     } catch (error) {
+      console.log(error);
       // alert(`${error.response.request.status} | ${error.response.data.message}`);
       setFailedTryLogin(true);
       setIsLogged(false);
@@ -66,10 +65,6 @@ function Login() {
     return EMAIL_VALIDATION_REGEX.test(email) && password.length >= PW_MINIMUM_LENGTH;
   };
 
-  // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
-
-  // if (isLogged) return navigate(`/${roleData}/products`);
-
   return (
     <section>
       <div />
@@ -81,7 +76,6 @@ function Login() {
               type="email"
               name="email"
               id="email-input"
-              datatest-id="common_login__input-email"
               value={ input.email }
               onChange={ handleInputChange }
               placeholder="email@trybeer.com.br"
@@ -94,7 +88,6 @@ function Login() {
               type="password"
               name="password"
               id="password-input"
-              datatest-id="common_login__input-password"
               value={ input.password }
               onChange={ handleInputChange }
               placeholder="Password"
@@ -106,7 +99,6 @@ function Login() {
             data-testid="common_login__button-login"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
-            datatest-id="common_login__button-login"
           >
             Enter
           </button>
@@ -128,6 +120,7 @@ function Login() {
             type="button"
             data-testid="common_login__button-register"
             onClick={ () => navigate('/register') }
+
           >
             Ainda não tenho conta
           </button>

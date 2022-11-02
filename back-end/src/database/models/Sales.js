@@ -7,11 +7,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
     },
 
-    user_id: {
+    userId: {
       type: DataTypes.INTEGER,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
+      field: 'user_id',
       references: {
         model: 'users',
         key: 'id',
@@ -55,6 +56,7 @@ module.exports = (sequelize, DataTypes) => {
     }
 
   },{
+    underscored: true,
     timestamps: false
   });
 

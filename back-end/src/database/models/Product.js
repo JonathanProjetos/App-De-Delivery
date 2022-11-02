@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
     price: {
       allowNull:false,
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(4,2),
     },
 
     url_image: {
@@ -24,14 +24,9 @@ module.exports = (sequelize, DataTypes) => {
     },
 
   },{
+    underscored: true,
     timestamps: false
   });
 
-  // product.associate = (models) => {
-  //   product.hasMany(models.saleProduct, {
-  //     foreignKey: 'id',
-  //     as: 'saleProduct',
-  //   });
-  // };
   return product;
 };

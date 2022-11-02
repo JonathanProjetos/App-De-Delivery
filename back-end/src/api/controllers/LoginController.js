@@ -1,18 +1,18 @@
-const Login = require('../services/LoginService');
+const LoginService = require('../services/LoginService');
 
 const LoginController = {
 
   Login: async (req, res) => {
     const { body } = req;
     console.log(body);
-    const result = await Login.Login(body);
-    const { tokenData, role } = result;
-    return res.status(200).json({ token: tokenData, role });
+    const result = await LoginService.Login(body);
+    return res.status(200).json(result);
   },
+
   loginValidate: async (req, res) => {
-    const { email } = req.user;
     try {
-      const result = await Login.loginValidate(email);
+      const { email } = req.user;
+      const result = await LoginService.loginValidate(email);
       if (result) {
         return res.status(200).json({ message: 'ok' });
       } 

@@ -54,7 +54,7 @@ module.exports = {
       id:8,
       name: 'Brahma Duplo Malte 350ml',
       price: 2.79,
-      url_image: 'http://localhost:3001/images/antarctica_pilsen_300ml.jpg'
+      url_image: 'http://localhost:3001/images/brahma_duplo_malte_350ml.jpg'
     },
 
     {
