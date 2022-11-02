@@ -12,11 +12,8 @@ const LoginServices = {
     const verifyEmail = await user.findOne({
       where: { email, password: md5(password) },
     });
-
     if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
-
     const generateToken = token.generateToken(email);
-
     return { 
       token: generateToken,
       role: verifyEmail.role,
