@@ -65,10 +65,6 @@ function Login() {
     return EMAIL_VALIDATION_REGEX.test(email) && password.length >= PW_MINIMUM_LENGTH;
   };
 
-  // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
-
-  // if (isLogged) return navigate(`/${roleData}/products`);
-
   return (
     <section>
       <div />

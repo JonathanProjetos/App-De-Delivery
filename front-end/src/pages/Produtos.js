@@ -11,7 +11,6 @@ function Produtos() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
-    // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
     const validToken = setToken(token);

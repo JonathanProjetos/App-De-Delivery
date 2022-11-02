@@ -26,6 +26,7 @@ const LoginServices = {
     const verifyEmail = await user.findOne({
       where: { email },
     });
+    console.log(verifyEmail);
     if (!verifyEmail) throw new Error('404|Pessoa não cadastrada');
     return { verifyEmail };
   },

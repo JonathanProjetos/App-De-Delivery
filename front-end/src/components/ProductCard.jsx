@@ -43,10 +43,6 @@ function ProductCard({ product, setUpdateTotal }) {
       const oldCart = cart.filter((item) => item.id !== productCard.id);
       setCart([...oldCart, { ...productCard, quantity: quantityUpdate }]);
       const test = [...oldCart, { ...productCard, quantity: quantityUpdate }];
-      // JSON.stringify(localStorage.setItem(
-      //   'cart',
-      //   [...oldCart, { ...productCard, quantity: quantityUpdate }],
-      // ));
       localStorage.setItem('cart', JSON.stringify(test));
       setUpdateTotal(true);
     } catch (error) {
