@@ -78,19 +78,19 @@ function ProductCard({ product, setUpdateTotal }) {
         <div key={ productCard.id }>
           <p
             name={ productCard.name }
-            datatest-id={ `customer_products__element-card-title-${productCard.id}` }
+            data-testid={ `customer_products__element-card-title-${productCard.id}` }
           >
             {productCard.name}
           </p>
           <p
             name={ productCard.name }
-            datatest-id={ `customer_products__element-card-price-${productCard.id}` }
+            data-testid={ `customer_products__element-card-price-${productCard.id}` }
           >
             {productCard.price.replace('.', ',')}
           </p>
           <img
             name={ productCard.name }
-            datatest-id={ `customer_products__img-card-bg-image-${productCard.id}` }
+            data-testid={ `customer_products__img-card-bg-image-${productCard.id}` }
             src={ productCard.url_image }
             alt={ productCard.name }
           />
@@ -105,7 +105,7 @@ function ProductCard({ product, setUpdateTotal }) {
             -
           </button>
           <input
-            data-testid={ `customer_products__button-card-rm-item-${productCard.id}` }
+            data-testid={ `customer_products__input-card-quantity-${productCard.id}` }
             name={ productCard.name }
             type="number"
             value={ quantityState }
