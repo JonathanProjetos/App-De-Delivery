@@ -8,6 +8,7 @@ import Cadastro from './pages/Cadastro';
 import MeusPedidos from './pages/MeusPedidos';
 import Produtos from './pages/Produtos';
 import Gerenciamento from './pages/Gerenciamento';
+import DetalhesPedidos from './pages/DetalhesDePedidos';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route exact path="/admin/manage" element={ <Gerenciamento /> } />
         <Route exact path="/register" element={ <Cadastro /> } />
         <Route exact path="/login" element={ <Login /> } />
-        <Route exact path="/customer/orders/:id" element={ <MeusPedidos /> } />
+        <Route exact path="/customer/orders" element={ <MeusPedidos /> } />
+        <Route exact path="/customer/orders/:id" element={ <DetalhesPedidos /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/customer/products" element={ <Produtos /> } />
       </Routes>
