@@ -59,10 +59,10 @@ function Checkout() {
   const createNewOrderRedirectDetail = async () => {
     const getUser = JSON.parse(localStorage.getItem('user'));
     const getTotal = JSON.parse(localStorage.getItem('total'));
-    console.log(getTotal);
+    const getIdSeller = dataSeller.find((i) => i.name === dados.option);
     const newOrder = {
       userId: getUser.id,
-      sellerId: 2,
+      sellerId: getIdSeller.id,
       totalPrice: getTotal,
       deliveryAddress: dados.endereco,
       deliveryNumber: dados.numero,
