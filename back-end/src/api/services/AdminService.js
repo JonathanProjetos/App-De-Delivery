@@ -14,16 +14,15 @@ const ProductService = {
     return result;
   },
   createUser: async (body) => {
-    const Joi = JoiValidade.validateUser(body);
-    console.log(Joi);
+    JoiValidade.validateUser(body);
     const verifyUser = await user.findOne({ where: { email: body.email } });
-    if (verifyUser) throw new Error('409|Email já cadastrado');
+    if (verifyUser) throw new Error('409|- Conflict');
     const { name, email, password, role } = body;
     const tokenPass = md5(password);
     const result = await user.create(
       { name, email, password: tokenPass, role }, { attributes: { exclude: ['password'] } },
       );
-    return result;
+    return result.dataValues;
   },
 };
 
