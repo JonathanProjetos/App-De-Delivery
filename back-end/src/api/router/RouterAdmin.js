@@ -6,7 +6,7 @@ const AdminController = require('../controllers/AdminController');
 const ROUTER_ADMIN = '/admin/manage';
 
 RouterAdmin.get(ROUTER_ADMIN, AdminController.getAllUsers);
-RouterAdmin.delete(ROUTER_ADMIN, AdminController.deleteUser);
+RouterAdmin.delete('/admin/manage/:id', AdminController.deleteUser);
 RouterAdmin.post(ROUTER_ADMIN, AdminController.createUser);
 
 module.exports = RouterAdmin;
