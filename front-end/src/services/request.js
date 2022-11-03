@@ -27,6 +27,11 @@ export const requestLogin = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
   return data;
 };
+export const requestDelete = async (endpoint) => {
+  const { data } = await api.delete(endpoint);
+  console.log(data);
+  return data;
+};
 
 export const requestSale = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);

@@ -8,6 +8,7 @@ const RouterRegister = require('./router/RouterRegister');
 const RouterProducts = require('./router/RouterProduct');
 const RouterSaleProducts = require('./router/RouterSaleProducts');
 const RouterSeller = require('./router/RouterSeller');
+const RouterAdmin = require('./router/RouterAdmin');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use('/', RouterRegister);
 app.use('/', RouterProducts);
 app.use('/', RouterSaleProducts);
 app.use('/', RouterSeller);
+app.use('/', RouterAdmin);
 app.use('/images', express.static('public'));
 
 app.use((err, _req, res, _next) => {
