@@ -10,8 +10,8 @@ const SaleProductsService = {
 
       console.log(order);
     
-      const result = await sale.create({ ...orderOrder },{ transaction });
-      const idOrder = result.dataValues.id
+      const result = await sale.create({ ...orderOrder }, { transaction });
+      const idOrder = result.dataValues.id;
       
       const postOrder = order
         .map((item) => ({ saleId: idOrder, productId: item.id, quantity: item.quantity }));
