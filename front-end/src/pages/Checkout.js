@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import moment from 'moment';
 import { validLogin, setToken, requestSale } from '../services/request';
 // import { pessoa } from '../mock/checkout';
 import Header from '../components/Header';
@@ -60,22 +59,21 @@ function Checkout() {
   const createNewOrderRedirectDetail = async () => {
     const getUser = JSON.parse(localStorage.getItem('user'));
     const getTotal = JSON.parse(localStorage.getItem('total'));
-    const convertTotal = getTotal.toString();
+    console.log(getTotal);
     const newOrder = {
       userId: getUser.id,
       sellerId: 2,
-      totalPrice: convertTotal,
+      totalPrice: getTotal,
       deliveryAddress: dados.endereco,
       deliveryNumber: dados.numero,
-      saleDate: moment().format('L'),
       status: 'Pendente',
       order: dataCart,
     };
+
     console.log(newOrder);
     setToken(getUser.token);
     const { id } = await requestSale('/customer/sale', newOrder);
-    // if (id) return navigate(`customer/orders/${id}`);
-    console.log(id);
+    if (id) return navigate(`customer/orders/${id}`);
   };
 
   const handleClickRemove = ({ target }) => {

@@ -27,7 +27,7 @@ function ProductCard({ product, setUpdateTotal }) {
       const test = [...oldCart, { ...productCard, quantity: Number(value) }];
       localStorage.setItem('cart', JSON.stringify(test));
       setUpdateTotal(true);
-    } 
+    }
   };
   const incrementar = () => {
     try {

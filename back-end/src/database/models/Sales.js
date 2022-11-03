@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     totalPrice: {
       allowNull:false,
       filed: 'total_price',
-      type: DataTypes.STRING,
+      type: DataTypes.DECIMAL(9, 2),
     },
 
     deliveryAddress: {
@@ -53,6 +53,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       field: 'sale_date',
       type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
 
     status: {

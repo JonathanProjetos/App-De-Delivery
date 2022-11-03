@@ -1,24 +1,26 @@
 module.exports = (sequelize, DataTypes) => {
-  const saleProduct = sequelize.define('sales_product', {
+  const saleProduct = sequelize.define('saleProduct', {
 
-    sale_id: {
+    saleId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
+      field: 'sale_id',
       references: {
         model: 'sale',
         key: 'id',
       },
     },
 
-    product_id: {
+    productId: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
+      field: 'product_id',
       references: {
         model: 'product',
         key: 'id',
@@ -28,6 +30,8 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
 
   },{
+    tableName: 'sales_products',
+    underscored: true,
     timestamps: false
   });
 
