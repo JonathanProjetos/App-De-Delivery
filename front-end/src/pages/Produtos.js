@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestData, setToken } from '../services/request';
-import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
+import ProductCard from '../components/ProductCard';
 
 function Produtos() {
   const navigate = useNavigate();
