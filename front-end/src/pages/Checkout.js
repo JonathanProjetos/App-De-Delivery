@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { pessoa } from '../mock/checkout';
+import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import { validLogin, setToken, requestSale } from '../services/request';
+// import { pessoa } from '../mock/checkout';
 import Header from '../components/Header';
 
 function Checkout() {
+  const navigate = useNavigate();
+
   const [dataCart, setDataCart] = useState([]);
+  const [dataSeller, setDataSeller] = useState([]);
   const [total, setTotal] = useState(0);
   const [dados, setDados] = useState({
     option: '',
@@ -12,12 +18,31 @@ function Checkout() {
   });
 
   useEffect(() => {
-    // setDataFilter([...mockitens]);
+    // validação para token ao acessar a page
+    const getToken = JSON.parse(localStorage.getItem('user'));
+    const { token } = getToken;
+    const requestValid = async () => {
+      try {
+        setToken(token);
+        const validToken = await validLogin('/login/validate');
+        if (!validToken) {
+          navigate('/login');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    requestValid();
+  }, [navigate]);
+
+  useEffect(() => {
+    const getSeller = JSON.parse(localStorage.getItem('seller'));
     const getCart = JSON.parse(localStorage.getItem('cart'));
     const getTotal = JSON.parse(localStorage.getItem('total'));
     getCart.forEach((i) => {
       i.totalProduct = (i.price * i.quantity).toFixed(2);
     });
+    setDataSeller(getSeller);
     setDataCart(getCart);
     setTotal(getTotal);
   }, [setDataCart]);
@@ -25,20 +50,35 @@ function Checkout() {
   console.log(dataCart);
   const handleChange = ({ target }) => {
     const { name, value } = target;
+    console.log(value);
     setDados((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleClick = () => {
-    // aqui finaliza a compra
-    const fake = 'funciona';
-    return console.log(fake);
+  const createNewOrderRedirectDetail = async () => {
+    const getUser = JSON.parse(localStorage.getItem('user'));
+    const getTotal = JSON.parse(localStorage.getItem('total'));
+    const convertTotal = getTotal.toString();
+    const newOrder = {
+      userId: getUser.id,
+      sellerId: 2,
+      totalPrice: convertTotal,
+      deliveryAddress: dados.endereco,
+      deliveryNumber: dados.numero,
+      saleDate: moment().format('L'),
+      status: 'Pendente',
+      order: dataCart,
+    };
+    console.log(newOrder);
+    setToken(getUser.token);
+    const { id } = await requestSale('/customer/sale', newOrder);
+    // if (id) return navigate(`customer/orders/${id}`);
+    console.log(id);
   };
 
   const handleClickRemove = ({ target }) => {
-    // subistituir mock aqui
     const removeItem = dataCart.filter((i, index) => index !== Number(target.id));
     localStorage.setItem('cart', JSON.stringify(removeItem));
     setDataCart(removeItem);
@@ -62,7 +102,7 @@ function Checkout() {
     'Sub-total',
     'Remover Item',
   ];
-  // console.log(().replace('.', ','));
+
   return (
     <div>
       <Header />
@@ -77,7 +117,7 @@ function Checkout() {
             </tr>
           </thead>
           <tbody>
-            { // mock precisa ser alterado 'mockitens', 'pessoa'.
+            {
               dataCart.map((data, index) => (
                 <tr key={ index }>
                   <td
@@ -150,8 +190,8 @@ function Checkout() {
             name="option"
             onChange={ handleChange }
           >
-            { pessoa.map((data, index) => (
-              <option key={ index }>{ data }</option>
+            { dataSeller.map(({ name }, index) => (
+              <option key={ index }>{ name }</option>
             ))}
           </select>
         </label>
@@ -183,7 +223,7 @@ function Checkout() {
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ handleClick }
+            onClick={ createNewOrderRedirectDetail }
           >
             FINALIZAR PEDIDO
           </button>
