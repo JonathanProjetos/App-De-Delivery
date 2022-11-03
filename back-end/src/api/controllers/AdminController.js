@@ -7,14 +7,14 @@ const AdminController = {
     return res.status(200).json(result);
   },
   deleteUser: async (req, res) => {
-    const { id } = req.body;
+    const { id } = req.params;
     const result = await Admin.deleteUser(id);
     return res.status(200).json(result);
   },
   createUser: async (req, res) => {
     const { body } = req;
     const result = await Admin.createUser(body);
-    return res.status(200).json(result);
+    return res.status(201).json(result);
   },
 };
 
