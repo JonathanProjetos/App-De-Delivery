@@ -10,9 +10,16 @@ const LoginController = {
   },
 
   loginValidate: async (req, res) => {
-    const { email } = req.user;
-    await LoginService.loginValidate(email);
-    return res.status(200).json(true);
+    try {
+      const { email } = req.user;
+      const result = await LoginService.loginValidate(email);
+      if (result) {
+        return res.status(200).json({ message: 'ok' });
+      } 
+        throw new Error('404|Pessoa não cadastrada');
+    } catch (err) {
+      return res.status(401).json({ message: err.message });
+    }
   },
   // loginValidate: async (req, res) => {
   //   const { email } = req.user;
