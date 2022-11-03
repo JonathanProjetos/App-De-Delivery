@@ -18,6 +18,13 @@ export const requestData = async (endpoint) => {
   return data;
 };
 
+export const requestAllData = async (endpoint) => {
+  const { data } = await api.get(endpoint);
+  console.log('endpoint', endpoint);
+  console.log('data', data);
+  return data;
+};
+
 export const validLogin = async (endpoint) => {
   const { data } = await api.post(endpoint);
   return data;

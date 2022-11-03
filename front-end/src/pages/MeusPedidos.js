@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Orders from '../components/Orders';
+import Header from '../components/Header';
+import { validLogin } from '../services/request';
 
 function MeusPedidos() {
+  const [user, setUser] = useState(undefined);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const loggedUser = JSON.parse(localStorage?.getItem('user')) || navigate('/login');
+      const validToken = await validLogin('/login/validate');
+      if (validToken) {
+        setUser(loggedUser);
+      } else {
+        navigate('/login');
+      }
+    })();
+  }, [navigate]);
+
   return (
-    <div>MeusPedidos</div>
+    <div>
+      { user ? (
+        <div>
+          <Header />
+          <Orders role={ user.role } />
+        </div>
+      ) : <p>Carregando...</p> }
+    </div>
   );
 }
 

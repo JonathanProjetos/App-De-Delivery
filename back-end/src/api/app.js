@@ -6,6 +6,7 @@ const cors = require('cors');
 const RouterLogin = require('./router/RouterLogin');
 const RouterRegister = require('./router/RouterRegister');
 const RouterProducts = require('./router/RouterProduct');
+const RouterOrder = require('./router/RouterOrder');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/', RouterLogin);
 app.use('/', RouterRegister);
 app.use('/', RouterProducts);
+app.use('/', RouterOrder);
 app.use('/images', express.static('public'));
 
 app.use((err, _req, res, _next) => {
