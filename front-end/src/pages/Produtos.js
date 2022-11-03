@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestData, setToken, validLogin } from '../services/request';
 import ProductCard from '../components/ProductCard';
+import Header from '../components/Header';
 
 function Produtos() {
   const navigate = useNavigate();
