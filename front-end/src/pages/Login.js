@@ -66,10 +66,6 @@ function Login() {
     return EMAIL_VALIDATION_REGEX.test(email) && password.length >= PW_MINIMUM_LENGTH;
   };
 
-  // rota esta dinâmica vindo a role do banco conforme o login, as pessoas logadas estão definidas no seeders;
-
-  // if (isLogged) return navigate(`/${roleData}/products`);
-
   return (
     <section>
       <div />
@@ -81,7 +77,6 @@ function Login() {
               type="email"
               name="email"
               id="email-input"
-              datatest-id="common_login__input-email"
               value={ input.email }
               onChange={ handleInputChange }
               placeholder="email@trybeer.com.br"
@@ -94,7 +89,6 @@ function Login() {
               type="password"
               name="password"
               id="password-input"
-              datatest-id="common_login__input-password"
               value={ input.password }
               onChange={ handleInputChange }
               placeholder="Password"
@@ -106,7 +100,6 @@ function Login() {
             data-testid="common_login__button-login"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
-            datatest-id="common_login__button-login"
           >
             Enter
           </button>

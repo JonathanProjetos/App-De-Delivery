@@ -8,8 +8,7 @@ function ProductCard({ product, setUpdateTotal }) {
   const [quantityState, setQuantityState] = useState(0);
 
   useEffect(() => {
-    const cartStorage = JSON.parse(localStorage.getItem('cart'));
-    console.log(cartStorage);
+    const cartStorage = localStorage.getItem('cart');
     if (cartStorage) {
       const totalValue = cart.reduce((
         acc,
@@ -28,9 +27,7 @@ function ProductCard({ product, setUpdateTotal }) {
       const test = [...oldCart, { ...productCard, quantity: Number(value) }];
       localStorage.setItem('cart', JSON.stringify(test));
       setUpdateTotal(true);
-    } else {
-    // setQuantityState(0)
-    }
+    } 
   };
   const incrementar = () => {
     try {
@@ -106,11 +103,11 @@ function ProductCard({ product, setUpdateTotal }) {
             -
           </button>
           <input
-            type="number"
-            onChange={ handleChange }
-            value={ quantityState }
             data-testid={ `customer_products__input-card-quantity-${productCard.id}` }
             name={ productCard.name }
+            type="number"
+            value={ quantityState }
+            onChange={ handleChange }
           />
           <button
             type="button"

@@ -14,8 +14,8 @@ function App() {
     <DeliveryProvider>
       <Routes>
         <Route exact path="/" element={ <Navigate to="/login" /> } />
+        <Route exact path="/register" element={ <Cadastro /> } />
         <Route exact path="/login" element={ <Login /> } />
-        <Route path="/register" element={ <Cadastro /> } />
         <Route exact path="/customer/orders/:id" element={ <MeusPedidos /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/administrador/manager" element={ <Gerenciamento /> } />
