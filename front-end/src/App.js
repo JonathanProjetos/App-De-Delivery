@@ -8,6 +8,7 @@ import Cadastro from './pages/Cadastro';
 import MeusPedidos from './pages/MeusPedidos';
 import Produtos from './pages/Produtos';
 import Gerenciamento from './pages/Gerenciamento';
+import DetalhesPedido from './pages/DetalhesDePedidos';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/administrador/manager" element={ <Gerenciamento /> } />
         <Route exact path="/customer/products" element={ <Produtos /> } />
+        <Route exact path="/customer/orders/:id" element={ <DetalhesPedido /> } />
       </Routes>
     </DeliveryProvider>
   );

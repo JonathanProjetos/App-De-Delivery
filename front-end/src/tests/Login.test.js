@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { screen, cleanup, waitForElement, render } from '@testing-library/react';
+import { screen, render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
@@ -29,11 +29,11 @@ describe('Pagina Login', () => {
         <Login />
       </BrowserRouter>,
     );
-    const { history } = renderWithRouter(<App />);
+    // const { initialEntries } = renderWithRouter(<App />);
     const enterButton = screen.getByTestId('common_login__button-login');
     expect(enterButton).toBeInTheDocument();
     axios.post.mockResolvedValueOnce(userMock.loginUser);
     userEvent.click(enterButton);
-    expect(history.location.pathname).toBe('/customer/products');
+    expect(initialEntries.location.path).toBe('/customer/products');
   });
 });
