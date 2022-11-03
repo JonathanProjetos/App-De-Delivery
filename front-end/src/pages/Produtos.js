@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestData, setToken, validLogin } from '../services/request';
-import Header from '../components/Header';
 import ProductCard from '../components/ProductCard';
 
 function Produtos() {
@@ -11,6 +10,7 @@ function Produtos() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
     const requestValid = async () => {
@@ -39,7 +39,6 @@ function Produtos() {
         // data.forEach((product) => {
         //   product.quantity = 0;
         // });
-        // console.log(data);
         setProducts(data);
       } catch (error) {
         // navigate('/login');
@@ -51,11 +50,8 @@ function Produtos() {
 
   useEffect(() => {
     if (updateTotal) {
-      const totalCart = localStorage.getItem('total');
-      console.log(totalCart);
+      const totalCart = JSON.parse(localStorage.getItem('total'));
       setTotal(totalCart);
-      const test = localStorage.getItem('cart');
-      console.log(test);
     }
     setUpdateTotal(false);
   }, [updateTotal]);
@@ -65,13 +61,14 @@ function Produtos() {
       <Header />
       <button
         type="button"
+        disabled={ total === 0 }
+        data-testid="customer_products__button-cart"
         onClick={ () => navigate('/customer/checkout') }
-        datatest-id="customer_products__checkout-bottom-value"
       >
-        VER CARRINHO :
-        R$
-        {' '}
-        {total}
+        Ver Carrinho: R$
+        <span data-testid="customer_products__checkout-bottom-value">
+          {total.toString().replace('.', ',')}
+        </span>
       </button>
       <div>
         { products.map((product) => (

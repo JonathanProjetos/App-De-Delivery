@@ -1,39 +1,96 @@
 import React, { useEffect, useState } from 'react';
-import { mockitens, pessoa } from '../mock/checkout';
+import { useNavigate } from 'react-router-dom';
+import { validLogin, setToken, requestSale } from '../services/request';
+// import { pessoa } from '../mock/checkout';
 import Header from '../components/Header';
 
 function Checkout() {
-  const [datafilter, setDataFilter] = useState([]);
+  const navigate = useNavigate();
+
+  const [dataCart, setDataCart] = useState([]);
+  const [dataSeller, setDataSeller] = useState([]);
+  const [total, setTotal] = useState(0);
   const [dados, setDados] = useState({
     option: '',
     endereco: '',
     numero: '',
   });
-  console.log(datafilter);
 
   useEffect(() => {
-    setDataFilter([...mockitens]);
-  }, []);
+    // validação para token ao acessar a page
+    const getToken = JSON.parse(localStorage.getItem('user'));
+    const { token } = getToken;
+    const requestValid = async () => {
+      try {
+        setToken(token);
+        const validToken = await validLogin('/login/validate');
+        if (!validToken) {
+          navigate('/login');
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    requestValid();
+  }, [navigate]);
 
+  useEffect(() => {
+    const getSeller = JSON.parse(localStorage.getItem('seller'));
+    const getCart = JSON.parse(localStorage.getItem('cart'));
+    const getTotal = JSON.parse(localStorage.getItem('total'));
+    getCart.forEach((i) => {
+      i.totalProduct = (i.price * i.quantity).toFixed(2);
+    });
+    setDataSeller(getSeller);
+    setDataCart(getCart);
+    setTotal(getTotal);
+  }, [setDataCart]);
+
+  console.log(dataCart);
   const handleChange = ({ target }) => {
     const { name, value } = target;
+    console.log(value);
     setDados((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
-  const handleClick = () => {
-    // aqui finaliza a compra
-    const fake = 'funciona';
-    return console.log(fake);
+  const createNewOrderRedirectDetail = async () => {
+    const getUser = JSON.parse(localStorage.getItem('user'));
+    const getTotal = JSON.parse(localStorage.getItem('total'));
+    const getIdSeller = dataSeller.find((i) => i.name === dados.option);
+    const newOrder = {
+      userId: getUser.id,
+      sellerId: getIdSeller.id,
+      totalPrice: getTotal,
+      deliveryAddress: dados.endereco,
+      deliveryNumber: dados.numero,
+      status: 'Pendente',
+      order: dataCart,
+    };
+
+    console.log(newOrder);
+    setToken(getUser.token);
+    const { id } = await requestSale('/customer/sale', newOrder);
+    if (id) return navigate(`customer/orders/${id}`);
   };
 
   const handleClickRemove = ({ target }) => {
-    // subistituir mock aqui
-    const removeItem = datafilter.filter((i, index) => index !== Number(target.id));
-    setDataFilter(removeItem);
+    const removeItem = dataCart.filter((i, index) => index !== Number(target.id));
+    localStorage.setItem('cart', JSON.stringify(removeItem));
+    setDataCart(removeItem);
+    const totalValue = removeItem.reduce((
+      acc,
+      { price, quantity },
+    ) => acc + (price * quantity), 0).toFixed(2);
+    localStorage.setItem('total', JSON.stringify(totalValue));
+    setTotal(totalValue);
   };
+
+  useEffect(() => {
+
+  }, []);
 
   const titulos = [
     'Item',
@@ -58,43 +115,43 @@ function Checkout() {
             </tr>
           </thead>
           <tbody>
-            { // mock precisa ser alterado 'mockitens', 'pessoa'.
-              datafilter.map((data, index) => (
+            {
+              dataCart.map((data, index) => (
                 <tr key={ index }>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-item-number-${index}`
                     }
                   >
-                    {data.item}
+                    {(index + 1)}
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-name-${index}`
                     }
                   >
-                    {data.descrição}
+                    {data.name}
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-quantity-${index}`
                     }
                   >
-                    {data.quantidade}
+                    {data.quantity}
                   </td>
                   <td
                     data-testid={
                       `customer_checkout__element-order-table-unit-price-${index}`
                     }
                   >
-                    {data.valorUnit}
+                    {data.price.replace('.', ',')}
                   </td>
                   <td
-                    data-testis={
+                    data-testid={
                       `customer_checkout__element-order-table-sub-total-${index}`
                     }
                   >
-                    {data.subtotal}
+                    {`R$ ${data.totalProduct.replace('.', ',')}`}
                   </td>
                   <td>
                     <button
@@ -116,7 +173,7 @@ function Checkout() {
         <h2
           data-testid="customer_checkout__element-order-total-price"
         >
-          Total:R$28,46
+          {`Total: R$ ${total.toString().replace('.', ',')}`}
 
         </h2>
       </div>
@@ -131,8 +188,8 @@ function Checkout() {
             name="option"
             onChange={ handleChange }
           >
-            { pessoa.map((data, index) => (
-              <option key={ index }>{ data }</option>
+            { dataSeller.map(({ name }, index) => (
+              <option key={ index }>{ name }</option>
             ))}
           </select>
         </label>
@@ -164,7 +221,7 @@ function Checkout() {
           <button
             type="submit"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ handleClick }
+            onClick={ createNewOrderRedirectDetail }
           >
             FINALIZAR PEDIDO
           </button>

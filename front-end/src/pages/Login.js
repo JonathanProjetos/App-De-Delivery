@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin, setToken } from '../services/request';
+import { requestLogin, setToken, requestData } from '../services/request';
 
 function Login() {
   const navigate = useNavigate();
@@ -16,14 +16,15 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token, role, name, email } = await requestLogin('/login', { ...input });
+      const { token, role, name, email, id } = await requestLogin('/login', { ...input });
+      const dataSeller = await requestData('/customer/seller');
       setToken(token);
       setRoleData(role);
-      localStorage.setItem('user', JSON.stringify({ token, role, name, email }));
+      localStorage.setItem('user', JSON.stringify({ token, role, name, email, id }));
+      localStorage.setItem('seller', JSON.stringify(dataSeller));
       setIsLogged(true);
     } catch (error) {
       console.log(error);
-      // alert(`${error.response.request.status} | ${error.response.data.message}`);
       setFailedTryLogin(true);
       setIsLogged(false);
     }
@@ -120,7 +121,6 @@ function Login() {
             type="button"
             data-testid="common_login__button-register"
             onClick={ () => navigate('/register') }
-
           >
             Ainda não tenho conta
           </button>

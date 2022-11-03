@@ -1,29 +1,28 @@
-const { user, sale, sequelize, saleProduct } = require('../../database/models');
-const ValidateId = require('../helper/checkArrayOrder');
+const { sale, sequelize, saleProduct } = require('../../database/models');
+// const ValidateId = require('../helper/checkArrayOrder');
 
-const SaleProducts = {
+const SaleProductsService = {
 
-  addSaleProducts: async ({ arrayOrder }, email) => {
+  addSaleProducts: async (body, order) => {
     const transactionOrder = await sequelize.transaction(async (transaction) => {
-      await ValidateId(arrayOrder);
+      const orderOrder = body;
+      delete orderOrder.order;
 
-      const checkId = await user.findOne({
-        where: { email },
-      });
+      console.log(order);
+    
+      const result = await sale.create({ ...orderOrder }, { transaction });
+      const idOrder = result.dataValues.id;
+      
+      const postOrder = order
+        .map((item) => ({ saleId: idOrder, productId: item.id, quantity: item.quantity }));
 
-      const result = await sale.create(
-        { saleId: checkId.dataValues.id }, 
-        { transaction },
-      );
+      await saleProduct.bulkCreate(postOrder, { transaction });
 
-      const postOrder = arrayOrder
-        .map((iten) => ({ saleId: result.id, productId: iten }));
-        
-      await saleProduct.bulkcreate(postOrder, { transaction });
-    }); 
+      return idOrder;
+    });
     return transactionOrder;
   },
 
 };
 
-export default SaleProducts;
+module.exports = SaleProductsService;

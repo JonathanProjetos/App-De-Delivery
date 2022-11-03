@@ -13,7 +13,7 @@ function ProductCard({ product, setUpdateTotal }) {
         acc,
         { price, quantity },
       ) => acc + (price * quantity), 0).toFixed(2);
-      localStorage.setItem('total', totalValue);
+      localStorage.setItem('total', JSON.stringify(totalValue));
     }
   }, [cart]);
 
@@ -26,11 +26,8 @@ function ProductCard({ product, setUpdateTotal }) {
       const test = [...oldCart, { ...productCard, quantity: Number(value) }];
       localStorage.setItem('cart', JSON.stringify(test));
       setUpdateTotal(true);
-    } else {
-      // setQuantityState(0)
     }
   };
-
   const incrementar = () => {
     try {
       const { quantity } = productCard;
@@ -86,7 +83,7 @@ function ProductCard({ product, setUpdateTotal }) {
             name={ productCard.name }
             data-testid={ `customer_products__element-card-price-${productCard.id}` }
           >
-            {productCard.price.replace('.', ',')}
+            { `R$ ${productCard.price.replace('.', ',')}` }
           </p>
           <img
             name={ productCard.name }

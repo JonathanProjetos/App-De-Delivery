@@ -19,35 +19,41 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
 
-    seller_id: {
+    sellerId: {
       type: DataTypes.INTEGER,
       foreignKey: true,
       onDelete: 'CASCADE',
       onUpdate: 'CASCADE',
+      field: 'seller_id',
       references: {
         model: 'users',
         key: 'id',
       },
     },
 
-    total_price: {
+    totalPrice: {
       allowNull:false,
+      filed: 'total_price',
+      type: DataTypes.DECIMAL(9, 2),
+    },
+
+    deliveryAddress: {
+      allowNull:false,
+      field: 'delivery_address',
       type: DataTypes.STRING,
     },
 
-    delivery_address: {
+    deliveryNumber: {
       allowNull:false,
+      field: 'delivery_number',
       type: DataTypes.STRING,
     },
 
-    delivery_number: {
+    saleDate: {
       allowNull:false,
-      type: DataTypes.STRING,
-    },
-
-    sale_date: {
-      allowNull:false,
+      field: 'sale_date',
       type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
     },
 
     status: {
