@@ -5,7 +5,6 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "engineStrict": true,
   "private": true,
   "scripts": {
     "start": "react-scripts start",
@@ -23,6 +22,7 @@
     "@testing-library/react": "12.1.4",
     "@testing-library/user-event": "13.5.0",
     "axios": "^1.1.3",
+    "history": "^5.3.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router-dom": "^6.4.2",
@@ -32,6 +32,7 @@
   },
   "devDependencies": {
     "eslint-config-trybe-frontend": "1.3.0",
+    "jest-mock-axios": "^4.7.0-beta",
     "stylelint": "14.6.0",
     "stylelint-config-standard": "25.0.0",
     "stylelint-order": "5.0.0"
@@ -64,6 +65,9 @@
       "reportWebVitals.js",
       "./services/renderWithRouter",
       "./services/history"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!@shotgunjed)/"
     ]
   }
 }

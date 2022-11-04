@@ -10,6 +10,7 @@ function Checkout() {
   const [dataCart, setDataCart] = useState([]);
   const [dataSeller, setDataSeller] = useState([]);
   const [total, setTotal] = useState(0);
+  const [IdSeller, setIdSeller] = useState(0);
   const [dados, setDados] = useState({
     option: '',
     endereco: '',
@@ -48,7 +49,12 @@ function Checkout() {
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    console.log(value);
+    if (name === 'option') {
+      const { selectedIndex, childNodes } = target;
+      const getId = childNodes[selectedIndex];
+      const option = getId.getAttribute('id');
+      setIdSeller(option);
+    }
     setDados((prevState) => ({
       ...prevState,
       [name]: value,
@@ -58,10 +64,10 @@ function Checkout() {
   const createNewOrderRedirectDetail = async () => {
     const getUser = JSON.parse(localStorage.getItem('user'));
     const getTotal = JSON.parse(localStorage.getItem('total'));
-    // const getIdSeller = dataSeller.find((i) => i.name === dados.option);
+    // const getIdSeller = dataSeller.fi((i) => i.name === dados.option);
     const newOrder = {
       userId: getUser.id,
-      sellerId: 2,
+      sellerId: Number(IdSeller),
       totalPrice: getTotal,
       deliveryAddress: dados.endereco,
       deliveryNumber: dados.numero,
@@ -183,8 +189,8 @@ function Checkout() {
             name="option"
             onChange={ handleChange }
           >
-            { dataSeller.map(({ name }, index) => (
-              <option key={ index }>{ name }</option>
+            { dataSeller.map(({ name, id }, index) => (
+              <option id={ id } key={ id }>{ name }</option>
             ))}
           </select>
         </label>
