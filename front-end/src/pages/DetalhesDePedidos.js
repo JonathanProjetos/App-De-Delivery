@@ -23,13 +23,14 @@ function DetalhesPedido() {
         console.log(error);
       }
     };
-    const salesData = requestSaleData();
-    setDataDetails(salesData);
+    console.log(requestSaleData());
+    // const salesData = requestSaleData();
+    // setDataDetails(salesData);
 
-    const getSeller = localStorage.getItem(salesData.find(
-      (id) => id === salesData.seller_id,
-    ));
-    setSellerName(getSeller);
+    // const getSeller = localStorage.getItem(salesData.find(
+    //   (id) => id === salesData.seller_id,
+    // ));
+    // setSellerName(getSeller);
   }, [navigate]);
 
   // const handleDeliveryCheck = () => {
@@ -46,10 +47,10 @@ function DetalhesPedido() {
         </p>
         <p data-testid="customer_order_details__element-order-details-label-seller-name">
           P.Vend:
-          {sellerName}
+          Nome
         </p>
         <p data-testid="customer_order_details__element-order-details-label-order-date">
-          {dataDetails.sale_date}
+          Data
         </p>
         <p
           data-testid={
@@ -59,12 +60,12 @@ function DetalhesPedido() {
           {
             (!isDelivered) ? (<p> Pedido a caminho</p>) : <p> Pedido entregue </p>
           }
-        </p>
+        </p> */}
         <button
           type="button"
           data-testid="customer_order_details__button-delivery-check"
           disabled={ isDelivered }
-          onClick={ handleDeliveryCheck }
+          // onClick={ handleDeliveryCheck }
         >
           Marcar como entregue
         </button>
