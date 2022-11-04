@@ -8,7 +8,7 @@ function DetalhesPedido() {
 
   const [dataDetails, setDataDetails] = useState(null);
   const [sellerName, setSellerName] = useState('');
-  const [isDelivered, setIsDelivered] = useState(false);
+  // const [isDelivered, setIsDelivered] = useState(false);
 
   useEffect(() => {
     const getUrl = document.URL;
