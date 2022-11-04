@@ -17,7 +17,7 @@ function Checkout() {
   });
 
   useEffect(() => {
-    // validação para token ao acessar a page
+    // validação do token ao acessar a página
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
     const requestValid = async () => {
@@ -46,7 +46,6 @@ function Checkout() {
     setTotal(getTotal);
   }, [setDataCart]);
 
-  console.log(dataCart);
   const handleChange = ({ target }) => {
     const { name, value } = target;
     console.log(value);
@@ -87,10 +86,6 @@ function Checkout() {
     localStorage.setItem('total', JSON.stringify(totalValue));
     setTotal(totalValue);
   };
-
-  useEffect(() => {
-
-  }, []);
 
   const titulos = [
     'Item',
@@ -144,7 +139,7 @@ function Checkout() {
                       `customer_checkout__element-order-table-unit-price-${index}`
                     }
                   >
-                    {data.price.replace('.', ',')}
+                    {`R$ ${data.price.replace('.', ',')}`}
                   </td>
                   <td
                     data-testid={
