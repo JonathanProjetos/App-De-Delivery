@@ -1,20 +1,20 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { requestAllData } from '../services/request';
+import { requestAllData } from '../services/request';
 import CustomerCard from './CustomerCard';
 import SellerCard from './SellerCard';
-import mock from '../mock/order';
+// import mock from '../mock/order';
 
 function Orders({ role }) {
   const [orders, setOrders] = useState(undefined);
 
   useEffect(() => {
     (async () => {
-      // const data = await requestAllData(`/${role}/products`);
-      const data = mock;
+      const data = await requestAllData(`/${role}/orders`);
+      // const data = mock;
       setOrders(data);
-      console.log('data order', data);
+      localStorage.setItem('pedidos', JSON.stringify(data));
     })();
   }, [role]);
 

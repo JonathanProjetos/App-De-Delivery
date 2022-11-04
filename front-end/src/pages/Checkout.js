@@ -10,6 +10,7 @@ function Checkout() {
   const [dataCart, setDataCart] = useState([]);
   const [dataSeller, setDataSeller] = useState([]);
   const [total, setTotal] = useState(0);
+  const [IdSeller, setIdSeller] = useState(0);
   const [dados, setDados] = useState({
     option: '',
     endereco: '',
@@ -17,7 +18,7 @@ function Checkout() {
   });
 
   useEffect(() => {
-    // validação para token ao acessar a page
+    // validação do token ao acessar a página
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
     const requestValid = async () => {
@@ -44,12 +45,17 @@ function Checkout() {
     setDataSeller(getSeller);
     setDataCart(getCart);
     setTotal(getTotal);
-  }, [setDataCart]);
+    setIdSeller(getSeller[0].id);
+  }, [setDataCart, dados.option]);
 
-  console.log(dataCart);
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    console.log(value);
+    if (name === 'option') {
+      const { selectedIndex, childNodes } = target;
+      const getId = childNodes[selectedIndex];
+      const option = getId.getAttribute('id');
+      setIdSeller(option);
+    }
     setDados((prevState) => ({
       ...prevState,
       [name]: value,
@@ -59,10 +65,10 @@ function Checkout() {
   const createNewOrderRedirectDetail = async () => {
     const getUser = JSON.parse(localStorage.getItem('user'));
     const getTotal = JSON.parse(localStorage.getItem('total'));
-    const getIdSeller = dataSeller.find((i) => i.name === dados.option);
+    // const getIdSeller = dataSeller.fi((i) => i.name === dados.option);
     const newOrder = {
       userId: getUser.id,
-      sellerId: getIdSeller.id,
+      sellerId: Number(IdSeller),
       totalPrice: getTotal,
       deliveryAddress: dados.endereco,
       deliveryNumber: dados.numero,
@@ -73,7 +79,7 @@ function Checkout() {
     console.log(newOrder);
     setToken(getUser.token);
     const { id } = await requestSale('/customer/sale', newOrder);
-    if (id) return navigate(`customer/orders/${id}`);
+    if (id) return navigate(`/customer/orders/${id}`);
   };
 
   const handleClickRemove = ({ target }) => {
@@ -87,10 +93,6 @@ function Checkout() {
     localStorage.setItem('total', JSON.stringify(totalValue));
     setTotal(totalValue);
   };
-
-  useEffect(() => {
-
-  }, []);
 
   const titulos = [
     'Item',
@@ -144,7 +146,7 @@ function Checkout() {
                       `customer_checkout__element-order-table-unit-price-${index}`
                     }
                   >
-                    {data.price.replace('.', ',')}
+                    {`R$ ${data.price.replace('.', ',')}`}
                   </td>
                   <td
                     data-testid={
@@ -188,8 +190,8 @@ function Checkout() {
             name="option"
             onChange={ handleChange }
           >
-            { dataSeller.map(({ name }, index) => (
-              <option key={ index }>{ name }</option>
+            { dataSeller.map(({ name, id }) => (
+              <option id={ id } key={ id }>{ name }</option>
             ))}
           </select>
         </label>

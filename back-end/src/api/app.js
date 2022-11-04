@@ -9,6 +9,7 @@ const RouterProducts = require('./router/RouterProduct');
 const RouterSaleProducts = require('./router/RouterSaleProducts');
 const RouterSeller = require('./router/RouterSeller');
 const RouterAdmin = require('./router/RouterAdmin');
+const RouterSaleDatail = require('./router/RouterSalesDetail');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/', RouterProducts);
 app.use('/', RouterSaleProducts);
 app.use('/', RouterSeller);
 app.use('/', RouterAdmin);
+app.use('/', RouterSaleDatail)
 app.use('/images', express.static('public'));
 
 app.use((err, _req, res, _next) => {

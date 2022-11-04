@@ -1,33 +1,77 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { requestData } from '../services/request';
 import Header from '../components/Header';
-import { validLogin } from '../services/request';
 
-function DetalhesPedidos() {
-  const [user, setUser] = useState(undefined);
+function DetalhesPedido() {
   const navigate = useNavigate();
 
+  const [dataDetails, setDataDetails] = useState(null);
+  const [sellerName, setSellerName] = useState('');
+  const [isDelivered, setIsDelivered] = useState(false);
+
   useEffect(() => {
-    (async () => {
-      const loggedUser = JSON.parse(localStorage?.getItem('user')) || navigate('/login');
-      const validToken = await validLogin('/login/validate');
-      if (validToken) {
-        setUser(loggedUser);
-      } else {
-        navigate('/login');
+    const getUrl = document.URL;
+    const urlArray = getUrl.split('/');
+    const lastSegment = urlArray[urlArray.length - 1];
+    console.log(lastSegment);
+    const requestSaleData = async () => {
+      try {
+        const data = await requestData(`/customer/orders/${lastSegment}`);
+        setDataDetails(data);
+      } catch (error) {
+        console.log(error);
       }
-    })();
+    };
+    const salesData = requestSaleData();
+    setDataDetails(salesData);
+
+    const getSeller = localStorage.getItem(salesData.find(
+      (id) => id === salesData.seller_id,
+    ));
+    setSellerName(getSeller);
   }, [navigate]);
+
+  // const handleDeliveryCheck = () => {
+  //   setIsDelivered(true);
+  // };
 
   return (
     <div>
-      { user ? (
-        <div>
-          <Header />
-        </div>
-      ) : <p>Carregando...</p> }
+      <Header />
+      <h1>Detalhe do Pedido</h1>
+      <section>
+        <p data-testid="customer_order_details__element-order-details-label-order-id">
+          PEDIDO 0003
+        </p>
+        <p data-testid="customer_order_details__element-order-details-label-seller-name">
+          P.Vend:
+          {sellerName}
+        </p>
+        <p data-testid="customer_order_details__element-order-details-label-order-date">
+          {dataDetails.sale_date}
+        </p>
+        <p
+          data-testid={
+            `customer_order_details__element-order-details-label-delivery-status${index}`
+          }
+        >
+          {
+            (!isDelivered) ? (<p> Pedido a caminho</p>) : <p> Pedido entregue </p>
+          }
+        </p>
+        <button
+          type="button"
+          data-testid="customer_order_details__button-delivery-check"
+          disabled={ isDelivered }
+          onClick={ handleDeliveryCheck }
+        >
+          Marcar como entregue
+        </button>
+      </section>
+
     </div>
   );
 }
 
-export default DetalhesPedidos;
+export default DetalhesPedido;
