@@ -21,7 +21,7 @@ function App() {
         <Route exact path="/customer/orders" element={ <MeusPedidos /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
         <Route exact path="/customer/products" element={ <Produtos /> } />
-        <Route exact path="/customer/orders/:id" element={ <DetalhesPedido /> } />
+        <Route exact path="customer/orders/:id" element={ <DetalhesPedido /> } />
       </Routes>
     </DeliveryProvider>
   );
