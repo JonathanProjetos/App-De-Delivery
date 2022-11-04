@@ -45,7 +45,8 @@ function Checkout() {
     setDataSeller(getSeller);
     setDataCart(getCart);
     setTotal(getTotal);
-  }, [setDataCart]);
+    setIdSeller(getSeller[0].id);
+  }, [setDataCart, dados.option]);
 
   const handleChange = ({ target }) => {
     const { name, value } = target;
@@ -78,7 +79,7 @@ function Checkout() {
     console.log(newOrder);
     setToken(getUser.token);
     const { id } = await requestSale('/customer/sale', newOrder);
-    if (id) return navigate(`customer/orders/${id}`);
+    if (id) return navigate(`/customer/orders/${id}`);
   };
 
   const handleClickRemove = ({ target }) => {
@@ -189,7 +190,7 @@ function Checkout() {
             name="option"
             onChange={ handleChange }
           >
-            { dataSeller.map(({ name, id }, index) => (
+            { dataSeller.map(({ name, id }) => (
               <option id={ id } key={ id }>{ name }</option>
             ))}
           </select>

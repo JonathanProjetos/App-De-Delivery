@@ -27,7 +27,7 @@ describe('Pagina Login', () => {
 
     const emailInput = screen.getByTestId(INPUT_EMAIL);
 
-    userEvent.type(emailInput, 'test@test.com');
+    userEvent.type(emailInput, 'zebirita@email.com');
 
     const passInput = screen.getByTestId(INPUT_PASSWORD);
 
@@ -35,11 +35,13 @@ describe('Pagina Login', () => {
   });
 
   it('login com usuario valido redireciona para pagina /customer/products', async () => {
-    const mockedAxios = axios;
-    const data = {};
-    const mockedPost = mockedAxios.post.mockReturnValueOnce(data);
-
     const { history } = renderWithRouter(<App />, ['/login']);
+
+    const emailInput = screen.getByTestId(INPUT_EMAIL);
+    userEvent.type(emailInput, 'zebirita@email.com');
+
+    const passInput = screen.getByTestId(INPUT_PASSWORD);
+    userEvent.type(passInput, '$#zebirita#$');
 
     const enterButton = screen.getByTestId('common_login__button-login');
 
@@ -47,7 +49,6 @@ describe('Pagina Login', () => {
 
     userEvent.click(enterButton);
 
-    expect(mockedPost).toHaveBeenCalled();
-    // expect(history.location.pathname).toBe('/customer/products');
+    expect(history.location.pathname).toBe('/customer/products');
   });
 });

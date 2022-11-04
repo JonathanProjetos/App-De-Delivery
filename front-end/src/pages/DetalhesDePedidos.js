@@ -56,15 +56,7 @@ function DetalhesPedido() {
           }
         >
           {
-            (!isDelivered)
-              ? (
-                <p>
-                  Pedido a caminho
-                </p>
-              )
-              : <p>
-                Pedido entregue
-              </p>
+            (!isDelivered) ? (<p> Pedido a caminho</p>) : <p> Pedido entregue </p>
           }
         </p>
         <button
