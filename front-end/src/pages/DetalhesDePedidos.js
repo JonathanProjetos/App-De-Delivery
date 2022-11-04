@@ -6,18 +6,19 @@ import Header from '../components/Header';
 function DetalhesPedido() {
   const navigate = useNavigate();
 
-  const [dataDetails, setDataDetails] = useState({});
+  const [dataDetails, setDataDetails] = useState(null);
   const [sellerName, setSellerName] = useState('');
   const [isDelivered, setIsDelivered] = useState(false);
 
   useEffect(() => {
     const getUrl = document.URL;
+    const urlArray = getUrl.split('/');
+    const lastSegment = urlArray[urlArray.length - 1];
+    console.log(lastSegment);
     const requestSaleData = async () => {
       try {
-        await requestData(getUrl);
-        if (!requestData) {
-          navigate('/customer/checkout');
-        }
+        const data = await requestData(`/customer/orders/${lastSegment}`);
+        setDataDetails(data);
       } catch (error) {
         console.log(error);
       }
@@ -31,9 +32,9 @@ function DetalhesPedido() {
     setSellerName(getSeller);
   }, [navigate]);
 
-  const handleDeliveryCheck = () => {
-    setIsDelivered(true);
-  };
+  // const handleDeliveryCheck = () => {
+  //   setIsDelivered(true);
+  // };
 
   return (
     <div>
