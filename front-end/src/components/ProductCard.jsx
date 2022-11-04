@@ -6,7 +6,6 @@ function ProductCard({ product, setUpdateTotal }) {
   const { cart, setCart } = useContext(Context);
   const [productCard, setProductCard] = useState(product);
   const [quantityState, setQuantityState] = useState(0);
-
   useEffect(() => {
     const cartStorage = localStorage.getItem('cart');
     if (cartStorage) {
