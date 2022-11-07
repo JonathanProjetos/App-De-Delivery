@@ -9,18 +9,20 @@ function CustomerCard({ id, saleDate, totalPrice, status }) {
     margin: '10px',
   };
 
+  const convertDateSale = new Date(saleDate).toLocaleDateString('pt-BR');
+
   return (
     <div
       style={ CSS }
     >
       <p data-testid={ `customer_orders__element-order-id-${id}` }>
-        {`Pedido ${String(id)}`}
+        {`Pedido 000${String(id)}`}
       </p>
       <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
         {status.toUpperCase()}
       </p>
       <p data-testid={ `customer_orders__element-order-date-${id}` }>
-        {saleDate}
+        {convertDateSale}
       </p>
       <p data-testid={ `customer_orders__element-card-price-${id}` }>
         {`R$ ${String(totalPrice).replace('.', ',')}`}
