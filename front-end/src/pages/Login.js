@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestLogin, setToken, requestData } from '../services/request';
+import css from '../css/style.css';
 
 function Login() {
   const navigate = useNavigate();
@@ -67,11 +68,11 @@ function Login() {
   };
 
   return (
-    <section>
-      <div />
-      <div>
+    <section style={ css } className="container">
+      <h2 className="title">Fuguetão Brabo Delivery</h2>
+      <div className="login-content">
         <form>
-          <label htmlFor="email-input">
+          <label htmlFor="email-input" className="input-div one">
             <input
               data-testid="common_login__input-email"
               type="email"
@@ -79,11 +80,11 @@ function Login() {
               id="email-input"
               value={ input.email }
               onChange={ handleInputChange }
-              placeholder="email@trybeer.com.br"
+              placeholder="Login"
+              className="input"
             />
           </label>
-
-          <label htmlFor="password-input">
+          <label htmlFor="password-input" className="input-div pass">
             <input
               data-testid="common_login__input-password"
               type="password"
@@ -91,15 +92,16 @@ function Login() {
               id="password-input"
               value={ input.password }
               onChange={ handleInputChange }
-              placeholder="Password"
+              placeholder="Senha"
+              className="input"
             />
           </label>
-
           <button
             type="button"
             data-testid="common_login__button-login"
             disabled={ !isLoginValid() }
             onClick={ (event) => loginValidateToken(event) }
+            className="btn"
           >
             Enter
           </button>
@@ -120,6 +122,7 @@ function Login() {
           <button
             type="button"
             data-testid="common_login__button-register"
+            className="btn"
             onClick={ () => navigate('/register') }
           >
             Ainda não tenho conta

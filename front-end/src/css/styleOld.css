@@ -1,0 +1,69 @@
+.ComponentesBase {
+  background: white;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  height: 4308px;
+  position: relative;
+  width: 1920px;
+}
+
+/* Base */
+.LoginBase {
+  background: #eaf1ef;
+  border: 1px solid #b1c2be;
+  bottom: 12.5%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  left: 39.06%;
+  position: absolute;
+  right: 38.8%;
+  top: 46.39%;
+}
+
+/* Form Login */
+.FormLogin {
+  background: #eaf1ef;
+  border: 1px solid #b1c2be;
+  bottom: 12.5%;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  left: 39.06%;
+  position: absolute;
+  right: 38.8%;
+  top: 46.39%;
+}
+
+/* Botão */
+.BotaoCadastro {
+  align-items: center;
+  bottom: 0%;
+  box-sizing: border-box;
+  color: #036b52;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  height: 59px;
+  left: 776px;
+  line-height: 33px;
+  right: 59px;
+  text-align: center;
+  top: 853px;
+  width: 370px;
+}
+
+.BotaoCadastro-text {
+  bottom: 0%;
+  left: 0%;
+  position: absolute;
+  right: 0%;
+  top: 0%;
+}
+
+.BotaoCadastro-bg {
+  border: 2px solid #036b52;
+  border-radius: 10px;
+  bottom: 0%;
+  left: 0%;
+  position: absolute;
+  right: 0%;
+  top: 0%;
+}
