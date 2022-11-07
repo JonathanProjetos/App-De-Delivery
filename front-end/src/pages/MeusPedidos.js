@@ -5,14 +5,14 @@ import Header from '../components/Header';
 import { validLogin, setToken } from '../services/request';
 
 function MeusPedidos() {
-  const [user, setUser] = useState(undefined);
+  const [roleUser, setUserRole] = useState(undefined);
   const navigate = useNavigate();
 
   useEffect(() => {
     // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
-    const { token } = getToken;
-    setUser(getToken);
+    const { token, role } = getToken;
+    setUserRole(role);
     const requestValid = async () => {
       try {
         setToken(token);
@@ -29,10 +29,10 @@ function MeusPedidos() {
 
   return (
     <div>
-      { user ? (
+      { roleUser ? (
         <div>
           <Header />
-          <Orders role={ user.role } />
+          <Orders role={ roleUser } />
         </div>
       ) : <p>Carregando...</p> }
     </div>
