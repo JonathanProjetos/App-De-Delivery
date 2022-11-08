@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { requestData, setToken, validLogin, updateStatus } from '../services/request';
 import Header from '../components/Header';
 
-function DetalhesPedido() {
+function DetalheDePedidoCostumer() {
   const navigate = useNavigate();
 
   const [dataPedidoDetail, setDataPedidoDetails] = useState('');
@@ -198,4 +198,4 @@ function DetalhesPedido() {
   );
 }
 
-export default DetalhesPedido;
+export default DetalheDePedidoCostumer;

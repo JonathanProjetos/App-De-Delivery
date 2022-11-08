@@ -4,7 +4,7 @@ import Orders from '../components/Orders';
 import Header from '../components/Header';
 import { validLogin, setToken } from '../services/request';
 
-function MeusPedidos() {
+function MeusPedidosCostumer() {
   const [roleUser, setUserRole] = useState(undefined);
   const navigate = useNavigate();
 
@@ -40,4 +40,4 @@ function MeusPedidos() {
   );
 }
 
-export default MeusPedidos;
+export default MeusPedidosCostumer;
