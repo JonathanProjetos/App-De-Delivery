@@ -35,21 +35,22 @@ describe('Pagina Login', () => {
     userEvent.type(passInput, 'test@test.com');
   });
 
-  // it('login com usuario valido redireciona para pagina /customer/products', async () => {
-  //   const { history } = renderWithRouter(<App />, ['/login']);
+  it('login com usuario valido redireciona para pagina /customer/products', async () => {
+    const { history } = renderWithRouter(<App />, ['/login']);
 
-  //   const emailInput = screen.getByTestId(INPUT_EMAIL);
-  //   userEvent.type(emailInput, 'zebirita@email.com');
+    const emailInput = screen.getByTestId(INPUT_EMAIL);
+    userEvent.type(emailInput, 'zebirita@email.com');
 
-  //   const passInput = screen.getByTestId(INPUT_PASSWORD);
-  //   userEvent.type(passInput, '$#zebirita#$');
+    const passInput = screen.getByTestId(INPUT_PASSWORD);
+    userEvent.type(passInput, '$#zebirita#$');
 
-  //   const enterButton = screen.getByTestId('common_login__button-login');
+    const enterButton = screen.getByTestId('common_login__button-login');
 
-  //   expect(enterButton).toBeInTheDocument();
+    expect(enterButton).toBeInTheDocument();
 
-  //   userEvent.click(enterButton);
+    userEvent.click(enterButton);
+    // history.push('/customer/products');
 
-  //   expect(history.location.pathname).toBe('/customer/products');
-  // });
+    expect(history.location.pathname).toBe('/customer/products');
+  });
 });
