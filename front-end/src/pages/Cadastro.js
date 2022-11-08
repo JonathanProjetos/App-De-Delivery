@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { requestLogin } from '../services/request';
+import css from '../css/style.css';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -48,12 +49,11 @@ function Cadastro() {
   if (isLogged) return navigate('/customer/products');
 
   return (
-    <section>
+    <section style={ css } className="container">
+      <h2 className="title">Cadastro</h2>
       <div className="register-container">
-        <h1>Cadastro</h1>
         <form>
-          <label htmlFor="nome">
-            Nome:
+          <label htmlFor="nome" className="input-div one">
             <input
               data-testid="common_register__input-name"
               id="nome"
@@ -62,22 +62,22 @@ function Cadastro() {
               type="text"
               placeholder="Nome de usuario"
               onChange={ handleChange }
+              className="input"
             />
           </label>
-          <label htmlFor="email">
-            Email:
+          <label htmlFor="email" className="input-div two">
             <input
               data-testid="common_register__input-email"
               value={ input.email }
               name="email"
               id="email"
               type="email"
-              placeholder="email"
+              placeholder="E-mail"
               onChange={ handleChange }
+              className="input"
             />
           </label>
-          <label htmlFor="password">
-            Senha:
+          <label htmlFor="password" className="input-div three">
             <input
               data-testid="common_register__input-password"
               value={ input.password }
@@ -86,6 +86,7 @@ function Cadastro() {
               type="password"
               placeholder="Senha"
               onChange={ handleChange }
+              className="input"
             />
           </label>
           <button
@@ -93,6 +94,7 @@ function Cadastro() {
             type="submit"
             disabled={ !validateFields() }
             onClick={ handleSubmit }
+            className="btn"
           >
             Cadastrar
           </button>

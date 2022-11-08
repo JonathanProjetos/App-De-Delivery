@@ -8,7 +8,6 @@
 
 body {
   font-family: Poppins , sans-serif;
-  overflow: hidden;
 }
 
 .title {
@@ -41,11 +40,27 @@ body {
   text-align: center;
 }
 
+.register-container {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+}
+
 form {
   width: 360px;
 }
 
 .login-content .input-div {
+  border-bottom: 2px solid #d9d9d9;
+  display: grid;
+  grid-template-columns: 7% 93%;
+  margin: 25px 0;
+  padding: 15px 0;
+  position: relative;
+}
+
+.register-container .input-div {
   border-bottom: 2px solid #d9d9d9;
   display: grid;
   grid-template-columns: 7% 93%;
