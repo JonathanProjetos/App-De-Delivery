@@ -1,10 +1,14 @@
 const express = require('express');
-
-const RouterSalesDetail = express.Router();
 const ValidateToken = require('../middleware/ValidateToken');
 const SalesDetailController = require('../controllers/SalesDetailController');
-;
 
-RouterSalesDetail.get('/customer/orders/:id',ValidateToken.loginToken, SalesDetailController.getSalesById);
+const RouterSalesDetail = express.Router();
+
+RouterSalesDetail.patch('/customer/orderStatus', 
+SalesDetailController.updateStatus);
+
+RouterSalesDetail.get('/customer/orders/:id',
+ValidateToken.loginToken, 
+SalesDetailController.getSalesById);
 
 module.exports = RouterSalesDetail;

@@ -8,7 +8,6 @@ import SellerCard from './SellerCard';
 
 function Orders({ role }) {
   const [orders, setOrders] = useState(undefined);
-
   useEffect(() => {
     (async () => {
       const data = await requestAllData(`/${role}/orders`);

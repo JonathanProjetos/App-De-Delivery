@@ -9,6 +9,7 @@ import MeusPedidos from './pages/MeusPedidos';
 import Produtos from './pages/Produtos';
 import Gerenciamento from './pages/Gerenciamento';
 import DetalhesPedido from './pages/DetalhesDePedidos';
+// import AcessProducts from './components/AcessProducts';
 
 function App() {
   return (

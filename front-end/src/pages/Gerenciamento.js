@@ -32,6 +32,7 @@ function Gerenciamento() {
         const token = localStorage.getItem('token');
         const validate = await requestLogin('/login/validate', { token });
         if (!validate) {
+          localStorage.setItem('user', '');
           navigate('/login');
         }
         const data = await requestData(ROUTER_ADMIN);

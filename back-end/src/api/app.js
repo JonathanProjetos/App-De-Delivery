@@ -25,7 +25,7 @@ app.use('/', RouterProducts);
 app.use('/', RouterSaleProducts);
 app.use('/', RouterSeller);
 app.use('/', RouterAdmin);
-app.use('/', RouterSaleDatail)
+app.use('/', RouterSaleDatail);
 app.use('/images', express.static('public'));
 
 app.use((err, _req, res, _next) => {

@@ -38,8 +38,8 @@ module.exports = (sequelize, DataTypes) => {
   saleProduct.associate = (models) => {
     models.product.belongsToMany(models.sale, {
       through: saleProduct,
-      foreignKey: 'sale_id',
-      otherKey: 'product_id',
+      foreignKey: 'product_id',
+      otherKey: 'sale_id',
       as: 'sales',
     });
   }
@@ -47,8 +47,8 @@ module.exports = (sequelize, DataTypes) => {
   saleProduct.associate = (models) => {
     models.sale.belongsToMany(models.product, {
       through: saleProduct,
-      foreignKey: 'product_id',
-      otherKey: 'sale_id',
+      foreignKey: 'sale_id',
+      otherKey: 'product_id',
       as: 'products',
     });
   }
