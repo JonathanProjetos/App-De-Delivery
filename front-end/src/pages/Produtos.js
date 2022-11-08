@@ -19,6 +19,7 @@ function Produtos() {
         setToken(token);
         const validToken = await validLogin('/login/validate');
         if (!validToken) {
+          localStorage.setItem('user', '');
           navigate('/login');
         }
       } catch (error) {

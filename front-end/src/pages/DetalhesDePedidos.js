@@ -24,6 +24,7 @@ function DetalhesPedido() {
         setToken(token);
         await validLogin('/login/validate');
         if (!validToken) {
+          localStorage.setItem('user', '');
           navigate('/login');
         }
       } catch (error) {
