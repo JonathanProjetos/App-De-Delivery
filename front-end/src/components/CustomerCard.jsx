@@ -19,7 +19,7 @@ function CustomerCard({ id, saleDate, totalPrice, status }) {
         {`Pedido 000${String(id)}`}
       </p>
       <p data-testid={ `customer_orders__element-delivery-status-${id}` }>
-        {status.toUpperCase()}
+        {status}
       </p>
       <p data-testid={ `customer_orders__element-order-date-${id}` }>
         {convertDateSale}
