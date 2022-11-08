@@ -1,10 +1,11 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
-import axios from 'axios';
+import { screen } from '@testing-library/react';
+// import { waitFor } from '@testing-library/react';
+// import axios from 'axios';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './renderWithRouter';
-import userMock from './testsMocks/user';
+// import userMock from './testsMocks/user';
 
 jest.mock('axios');
 
@@ -22,7 +23,7 @@ describe('Pagina Login', () => {
     expect(passInput && emailInput && enterButton).toBeInTheDocument();
   });
 
-  it('testa se possivel usar os iputs', () => {
+  it('testa se possivel usar os inputs', () => {
     renderWithRouter(<App />, ['/login']);
 
     const emailInput = screen.getByTestId(INPUT_EMAIL);
@@ -48,6 +49,7 @@ describe('Pagina Login', () => {
     expect(enterButton).toBeInTheDocument();
 
     userEvent.click(enterButton);
+    // history.push('/customer/products');
 
     expect(history.location.pathname).toBe('/customer/products');
   });
