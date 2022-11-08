@@ -8,6 +8,7 @@ function Login() {
   const [isLogged, setIsLogged] = useState(false);
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const [roleData, setRoleData] = useState('');
+  // const [storageToken, setStorageToken] = useState('');
   const [input, setInput] = useState({
     email: '',
     password: '',
@@ -29,6 +30,30 @@ function Login() {
       setIsLogged(false);
     }
   };
+
+  useEffect(() => {
+    try {
+      const { token, role } = JSON.parse(localStorage.getItem('user'));
+      console.log(token);
+      if (token) {
+        switch (role) {
+        case 'administrator':
+          navigate('/admin/manage');
+          break;
+        case 'seller':
+          navigate('/seller/orders');
+          break;
+        case 'customer':
+          navigate('/customer/products');
+          break;
+        default:
+          break;
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [navigate, roleData]);
 
   useEffect(() => {
     setFailedTryLogin(false);
