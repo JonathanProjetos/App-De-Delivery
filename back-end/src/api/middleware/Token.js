@@ -3,7 +3,6 @@ require('dotenv/config');
 const jwtKey = require('fs')
   .readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' });
 
-// const JWT_SECRET = process.env.JWT_SECRET || 'secret_key';
 
 const jwtCheckLogin = {
   
@@ -21,7 +20,6 @@ const jwtCheckLogin = {
       const test = jwt.verify(token, jwtKey);
       return test;
     } catch (error) {
-      console.log(jwtKey);
       throw new Error('401|Expired or invalid token');
     }
   },

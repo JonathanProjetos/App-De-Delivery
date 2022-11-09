@@ -19,7 +19,6 @@ const validateLogin = (dados) => {
 
   const { error, value } = login.validate(dados);
 
-  // console.log(error);
   if (error) {
     throw error;
   }
@@ -64,7 +63,6 @@ const validateUser = (dados) => {
       'string.empty': '400|Campo role não pode ser vazio',
     }) });
   const { error, value } = user.validate(dados);
-  // console.log(error);
   if (error) { throw error; } return value;
 };
 

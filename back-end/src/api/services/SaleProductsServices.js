@@ -7,8 +7,6 @@ const SaleProductsService = {
     const transactionOrder = await sequelize.transaction(async (transaction) => {
       const orderOrder = body;
       delete orderOrder.order;
-
-      console.log(order);
     
       const result = await sale.create({ ...orderOrder }, { transaction });
       const idOrder = result.dataValues.id;
