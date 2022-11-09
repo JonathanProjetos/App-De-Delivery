@@ -11,7 +11,6 @@ function Orders({ role }) {
   useEffect(() => {
     (async () => {
       const data = await requestAllData(`/${role}/orders`);
-      // const data = mock;
       setOrders(data);
       localStorage.setItem('pedidos', JSON.stringify(data));
     })();
@@ -23,7 +22,7 @@ function Orders({ role }) {
         orders ? orders.map((order) => (
           <Link
             key={ order.id }
-            to={ `/${role}/orders/${order.id}` }
+            to={ `/customer/orders/${order.id}` }
             params={ order.id }
           >
             { role === 'customer' ? (
