@@ -18,7 +18,7 @@ const SalesDetailController = {
   },
 
   getSalesAllSeller: async (req, res) => {
-    const { email } = req.user
+    const { email } = req.user;
     const result = await Sales.getSalesAllSeller(email);
     return res.status(200).json(result);
   },
@@ -28,6 +28,7 @@ const SalesDetailController = {
     const { email } = req.user;
     const resultSales = await Sales.getSalesByIdSeller(id, email);
     return res.status(200).json(resultSales);
-  }
-}
+  },
+};
+
 module.exports = SalesDetailController;
