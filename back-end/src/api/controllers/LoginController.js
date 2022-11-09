@@ -4,7 +4,6 @@ const LoginController = {
 
   Login: async (req, res) => {
     const { body } = req;
-    console.log(body);
     const result = await LoginService.Login(body);
     return res.status(200).json(result);
   },

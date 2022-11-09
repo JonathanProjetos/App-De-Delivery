@@ -29,8 +29,8 @@ function Checkout() {
           localStorage.setItem('user', '');
           navigate('/login');
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     requestValid();
@@ -77,7 +77,6 @@ function Checkout() {
       order: dataCart,
     };
 
-    console.log(newOrder);
     setToken(getUser.token);
     const { id } = await requestSale('/customer/sale', newOrder);
     if (id) return navigate(`/customer/orders/${id}`);

@@ -1,5 +1,3 @@
-// import validateToken from '../middleware/ValidateToken';
-
 const express = require('express');
 
 const RouterLogin = express.Router();

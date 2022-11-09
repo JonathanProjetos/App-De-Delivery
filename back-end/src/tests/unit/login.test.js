@@ -4,7 +4,6 @@ const chaiHttp  = require('chai-http');
 const sinon = require("sinon");
 const app = require('../../api/app');
 
-const logintService = require('../../api/services/LoginService');
 const { loginMockResult,
   loginMock,
   loginFailedEmail,

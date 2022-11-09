@@ -42,8 +42,8 @@ function ProductCard({ product, setUpdateTotal }) {
       const test = [...oldCart, { ...productCard, quantity: quantityUpdate }];
       localStorage.setItem('cart', JSON.stringify(test));
       setUpdateTotal(true);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err.response.data);
     }
   };
 

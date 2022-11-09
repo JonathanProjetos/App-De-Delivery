@@ -13,7 +13,7 @@ function Gerenciamento() {
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
     const validToken = setToken(token);
-    console.log('test', validToken);
+
     if (validToken) {
       navigate('/login');
     }
@@ -36,12 +36,11 @@ function Gerenciamento() {
           navigate('/login');
         }
         const data = await requestData(ROUTER_ADMIN);
-        console.log(data);
+
         const result = data.filter((user) => user.role !== 'administrator');
         setUsers(result);
-      } catch (error) {
-        // navigate('/login');
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     loginValidate();

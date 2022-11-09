@@ -16,7 +16,7 @@ function SellerCard({
         {`Pedido ${String(id)}`}
       </p>
       <p data-testid={ `seller_orders__element-delivery-status-${id}` }>
-        {status.toUpperCase()}
+        {status}
       </p>
       <p data-testid={ `seller_orders__element-order-date-${id}` }>
         {saleDate}

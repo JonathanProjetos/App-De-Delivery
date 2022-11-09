@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Orders from '../components/Orders';
-import Header from '../components/Header';
+import OrdersSeller from '../components/OrderSeller';
+import HeaderSeller from '../components/HeaderSeller';
 import { validLogin, setToken } from '../services/request';
 
-function MeusPedidos() {
+function MeusPedidosSeller() {
   const [roleUser, setUserRole] = useState(undefined);
   const navigate = useNavigate();
 
@@ -21,8 +21,8 @@ function MeusPedidos() {
           localStorage.setItem('user', '');
           navigate('/login');
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     requestValid();
@@ -32,12 +32,12 @@ function MeusPedidos() {
     <div>
       { roleUser ? (
         <div>
-          <Header />
-          <Orders role={ roleUser } />
+          <HeaderSeller />
+          <OrdersSeller role={ roleUser } />
         </div>
       ) : <p>Carregando...</p> }
     </div>
   );
 }
 
-export default MeusPedidos;
+export default MeusPedidosSeller;

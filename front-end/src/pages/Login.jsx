@@ -25,8 +25,8 @@ function Login() {
       localStorage.setItem('user', JSON.stringify({ token, role, name, email, id }));
       localStorage.setItem('seller', JSON.stringify(dataSeller));
       setIsLogged(true);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
       setFailedTryLogin(true);
       setIsLogged(false);
     }
@@ -35,7 +35,6 @@ function Login() {
   useEffect(() => {
     try {
       const { token, role } = JSON.parse(localStorage.getItem('user'));
-      console.log(token);
       if (token) {
         switch (role) {
         case 'administrator':
@@ -51,8 +50,8 @@ function Login() {
           break;
         }
       }
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.error(err);
     }
   }, [navigate, roleData]);
 

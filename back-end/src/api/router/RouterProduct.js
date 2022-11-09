@@ -4,7 +4,6 @@ const RouterProducts = express.Router();
 
 const ProductsController = require('../controllers/ProductsController');
 const SalesController = require('../controllers/SalesController');
-// const { validateToken } = require('../middleware/Token');
 const ValidateToken = require('../middleware/ValidateToken');
 
 RouterProducts.get('/customer/products', ProductsController.getProducts);

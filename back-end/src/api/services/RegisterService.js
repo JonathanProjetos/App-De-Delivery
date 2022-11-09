@@ -12,7 +12,7 @@ const RegisterServices = {
       return null; // se encontrar um usuario ja existente, retorna nulo
     }
     const tokenPass = md5(password);
-    console.log(tokenPass);
+  
     const newUser = await user.create({ name, email, password: tokenPass, role: 'customer' });
     return newUser;
   },

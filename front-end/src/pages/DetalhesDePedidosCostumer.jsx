@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { requestData, setToken, validLogin, updateStatus } from '../services/request';
 import Header from '../components/Header';
 
-function DetalhesPedido() {
+function DetalheDePedidoCostumer() {
   const navigate = useNavigate();
 
   const [dataPedidoDetail, setDataPedidoDetails] = useState('');
@@ -11,10 +11,7 @@ function DetalhesPedido() {
   const [sellerName, setSellerName] = useState('');
   const [total, setTotal] = useState('');
   const [dataProducts, setDataproducts] = useState('');
-  // const [isDelivered, setIsDelivered] = useState(false);
-  console.log(dataPedidoDetail && dataPedidoDetail[0].status);
-  console.log(dateSeller);
-  // console.log(sellerName);
+
   useEffect(() => {
     // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
@@ -22,13 +19,13 @@ function DetalhesPedido() {
     const requestValid = async () => {
       try {
         setToken(token);
-        await validLogin('/login/validate');
+        const validToken = await validLogin('/login/validate');
         if (!validToken) {
           localStorage.setItem('user', '');
           navigate('/login');
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     requestValid();
@@ -38,16 +35,17 @@ function DetalhesPedido() {
     const getUrl = document.URL;
     const urlArray = getUrl.split('/');
     const lastSegment = urlArray[urlArray.length - 1];
-    console.log(lastSegment);
+
     const requestSaleData = async () => {
       try {
         const data = await requestData(`/customer/orders/${lastSegment}`);
         const seller = Object.values(data[0].sale);
         setDataPedidoDetails(seller);
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
+
     requestSaleData();
   }, [navigate]);
 
@@ -75,10 +73,6 @@ function DetalhesPedido() {
     setDataproducts(dataProducts);
   }, [dataProducts]);
 
-  // const handleDeliveryCheck = () => {
-  //   setIsDelivered(true);
-  // };
-
   const handleUpdateStatus = async () => {
     const getUrl = document.URL;
     const urlArray = getUrl.split('/');
@@ -93,7 +87,7 @@ function DetalhesPedido() {
       const seller = Object.values(data[0].sale);
       setDataPedidoDetails(seller);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -130,9 +124,10 @@ function DetalhesPedido() {
         </p>
         <button
           data-testid="customer_order_details__button-delivery-check"
-          type="submit"
+          type="button"
           onClick={ handleUpdateStatus }
-          disabled={ dataPedidoDetail && dataPedidoDetail[0].status === 'Pendente' }
+          disabled={ dataPedidoDetail && (
+            dataPedidoDetail[0].status !== 'Em Trânsito') }
         >
           MARCAR COMO ENTREGUE
         </button>
@@ -198,4 +193,4 @@ function DetalhesPedido() {
   );
 }
 
-export default DetalhesPedido;
+export default DetalheDePedidoCostumer;

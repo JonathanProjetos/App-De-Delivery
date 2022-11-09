@@ -31,7 +31,6 @@ function CadastroUserAdmin({ setUsers }) {
     event.preventDefault();
     try {
       const data = await requestLogin('/admin/manage', { ...input });
-      console.log(data);
       setFailedToRegister(false);
       setUsers((prevState) => [...prevState, data]);
     } catch (error) {

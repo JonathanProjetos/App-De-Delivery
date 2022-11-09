@@ -33,14 +33,13 @@ function Cadastro() {
     event.preventDefault();
     const { name, email, password } = input;
     try {
-      const data = await requestLogin(
+      await requestLogin(
         '/register',
         { name, email, password },
       );
       setIsLogged(true);
-      console.log(data);
-    } catch (error) {
-      console.error(error.response.data);
+    } catch (err) {
+      console.error(err);
       setFailedToRegister(true);
       setIsLogged(false);
     }

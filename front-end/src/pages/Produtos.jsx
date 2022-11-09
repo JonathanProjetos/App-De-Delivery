@@ -23,8 +23,8 @@ function Produtos() {
           localStorage.setItem('user', '');
           navigate('/login');
         }
-      } catch (error) {
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     requestValid();
@@ -33,19 +33,10 @@ function Produtos() {
   useEffect(() => {
     const loginValidate = async () => {
       try {
-        // const token = localStorage.getItem('token');
-        // const validate = await requestLogin('/login/validate', { token });
-        // if (!validate) {
-        //   navigate('/login');
-        // }
         const data = await requestData('/customer/products');
-        // data.forEach((product) => {
-        //   product.quantity = 0;
-        // });
         setProducts(data);
-      } catch (error) {
-        // navigate('/login');
-        console.log(error);
+      } catch (err) {
+        console.error(err);
       }
     };
     loginValidate();
