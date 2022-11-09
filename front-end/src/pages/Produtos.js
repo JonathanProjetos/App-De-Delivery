@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { requestData, setToken, validLogin } from '../services/request';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
+import css from '../css/style.css';
 
 function Produtos() {
   const navigate = useNavigate();
@@ -59,13 +60,14 @@ function Produtos() {
   }, [updateTotal]);
 
   return (
-    <section>
+    <section style={ css } className="container">
       <Header />
       <button
         type="button"
         disabled={ total === 0 }
         data-testid="customer_products__button-cart"
         onClick={ () => navigate('/customer/checkout') }
+        className="btn-product"
       >
         Ver Carrinho: R$
         <span data-testid="customer_products__checkout-bottom-value">

@@ -50,8 +50,8 @@ function Cadastro() {
 
   return (
     <section style={ css } className="container">
-      <h2 className="title">Cadastro</h2>
       <div className="register-container">
+        <h2 className="title">Cadastro</h2>
         <form>
           <label htmlFor="nome" className="input-div one">
             <input

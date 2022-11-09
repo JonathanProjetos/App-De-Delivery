@@ -15,15 +15,16 @@ body {
   color: #0a67be;
   font-family: Dancing Script , cursive;
   font-size: 2.9rem;
-  overflow: hidden;
 }
 
-.wave {
-  bottom: 0;
-  height: 100%;
-  left: 0;
-  position: fixed;
-  z-index: -1;
+.client-name {
+  align-self: center;
+  color: #0a67be;
+  display: flex;
+  font-family: Dancing Script , cursive;
+  font-size: 6.9rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .container {
@@ -34,17 +35,34 @@ body {
 }
 
 .login-content {
+  align-content: center;
   align-items: center;
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
   text-align: center;
 }
 
 .register-container {
+  align-content: center;
   align-items: center;
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  justify-content: center;
+  justify-items: center;
   text-align: center;
+}
+
+.product-container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.btn-container {
+  display: grid;
+  justify-content: stretch;
+  width: 20%;
 }
 
 form {
@@ -101,7 +119,47 @@ form {
   width: 100%;
 }
 
+.btn-product {
+  background-image: linear-gradient(to right, #3432be, #08d0eb, #050505);
+  background-size: 200%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flexbox;
+  font-family: Poppins , sans-serif;
+  font-size: 1.2rem;
+  height: 10vh;
+  outline: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.btn-exit {
+  background-image: linear-gradient(to right, #3432be, #08d0eb, #050505);
+  background-size: 200%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flexbox;
+  font-family: Poppins , sans-serif;
+  font-size: 1.2rem;
+  height: 10vh;
+  outline: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 100%;
+}
+
 .btn:hover {
   background-position: right;
 }
 
+.btn-product:hover {
+  background-position: right;
+}
+
+
+.btn-exit:hover {
+  background-position: right;
+}
