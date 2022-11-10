@@ -1,5 +1,4 @@
 const { sale, sequelize, saleProduct } = require('../../database/models');
-// const ValidateId = require('../helper/checkArrayOrder');
 
 const SaleProductsService = {
 

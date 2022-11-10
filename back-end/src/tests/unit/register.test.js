@@ -3,28 +3,29 @@ const chai = require("chai");
 const chaiHttp  = require('chai-http');
 const sinon = require("sinon");
 const app = require('../../api/app');
+const RegisterController = require('../../api/controllers/RegisterController');
 
 const registerMock = require("../mocks/register.mock");
 const { expect } = chai;
+
+const User = {
+  "name": "Teste Teste Teste Teste",
+  "email": "teste@teste.com",
+  "password": "123456"
+}
+
 chai.use(chaiHttp);
-
 describe("Testes da rota /register", () => {
-
-  afterEach(()=>{
+  before(() => {
+    sinon.stub(RegisterController, 'Register').resolves(User);
+  })
+  after(() => {
     sinon.restore();
   });
-
-  describe("POST SUCCESS", () => {
-    it("cadastro feito com sucesso", async function () {
-      const response = await chai.request(app).post('/register').send(registerMock.userMock);
-      expect(response.status).to.equal(201);
-    });
-    it("cadastro feito com sucesso retorna um usuario valido", async function () {
-      const response = await chai.request(app).post('/register').send(registerMock.userMock2);
-      expect(response.status).to.equal(201);
-      expect(response.body).to.have.property('password');
-      expect(response.body.email).to.deep.equal(registerMock.userMock2.email);
-      expect(response.body.name).to.deep.equal(registerMock.userMock2.name);
+  describe("POST FAILED", () => {
+    it("Usuario já cadastrado", async function () {
+      const response = await chai.request(app).post('/register').send(User);
+      expect(response.status).to.equal(409);
     });
   });  
 
@@ -54,10 +55,10 @@ describe("Testes da rota /register", () => {
       expect(response.status).to.equal(400);
       expect(response.body).to.deep.equal(registerMock.registerFailPassChar);
     });
-    it("cadastro falha quando informa um usuario que ja existe", async function () {
-      const response = await chai.request(app).post('/register').send(registerMock.userMock);
-      expect(response.status).to.equal(409);
-      expect(response.body).to.deep.equal(registerMock.registerFailUserAlrdExist);
-    });
+    // it("cadastro falha quando informa um usuario que ja existe", async function () {
+    //   const response = await chai.request(app).post('/register').send(registerMock.userMock);
+    //   expect(response.status).to.equal(409);
+    //   expect(response.body).to.deep.equal(registerMock.registerFailUserAlrdExist);
+    // });
   });  
 });

@@ -11,7 +11,6 @@ function DetalheDePedidoCostumer() {
   const [sellerName, setSellerName] = useState('');
   const [total, setTotal] = useState('');
   const [dataProducts, setDataproducts] = useState('');
-
   useEffect(() => {
     // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
