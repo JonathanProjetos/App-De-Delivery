@@ -17,6 +17,24 @@ body {
   font-size: 2.9rem;
 }
 
+.subtitle {
+  align-items: center;
+  background-image: linear-gradient(to right, #3432be, #08d0eb, #050505);
+  background-size: 200%;
+  border: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-family: cursive;
+  font-size: 1.2rem;
+  justify-content: center;
+  min-height: 50px;
+  outline: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 100%;
+}
+
 .client-name {
   align-self: center;
   color: #0a67be;
@@ -31,7 +49,61 @@ body {
   display: grid;
   height: 100vh;
   justify-items: center;
+  margin: 0 auto;
   width: 100vw;
+}
+
+.container-products {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'item item item item'
+    'item item item item'
+    'item item item item';
+  justify-items: center;
+  margin: 0 auto;
+}
+
+.container-orders {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas: 'item item item item'
+    'item item item item'
+    'item item item item';
+  justify-items: center;
+  margin: 0 auto;
+}
+
+.container-detail {
+  align-items: center;
+  display: flexbox;
+  font-family: cursive;
+  font-size: larger;
+  justify-content: center;
+}
+
+img {
+  max-height: 150px;
+  max-width: 150px;
+  padding: 5px;
+}
+
+.item {
+  align-items: center;
+  color: #02498b;
+  display: inline-flex;
+  flex-direction: column;
+  font-family: cursive;
+  grid-area: 'item';
+  justify-content: center;
+  min-height: 250px;
+  min-width: 250px;
+}
+
+.div-quantity {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .login-content {
@@ -71,6 +143,7 @@ form {
 
 .login-content .input-div {
   border-bottom: 2px solid #d9d9d9;
+  color: #02498b;
   display: grid;
   grid-template-columns: 7% 93%;
   margin: 25px 0;
@@ -90,6 +163,7 @@ form {
 .input {
   background: none;
   border: none;
+  color: #02498b;
   font-family: Poppins , sans-serif;
   font-size: 1.2rem;
   height: 100%;
@@ -101,8 +175,75 @@ form {
   width: 100%;
 }
 
+.input-quantity {
+  background: none;
+  border: none;
+  color: #02498b;
+  display: flex;
+  font-family: cursive;
+  font-size: 1.2rem;
+  height: 100%;
+  margin-left: 15px;
+  outline: none;
+  text-align: center;
+  text-justify: distribute;
+  width: 100%;
+}
+
 .btn {
   background-image: linear-gradient(to right, #3432be, #08d0eb, #050505);
+  background-size: 200%;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: Poppins , sans-serif;
+  font-size: 1.2rem;
+  height: 50px;
+  margin: 1rem 0;
+  outline: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.btn-entregue {
+  background-image: linear-gradient(to right, #03532b, #037a59, #013024);
+  background-size: 200%;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: Poppins , sans-serif;
+  font-size: 1.2rem;
+  height: 50px;
+  outline: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.btn-dec {
+  background-image: linear-gradient(to left, #f10813, #eb4e4e, #f30337);
+  background-size: 200%;
+  border: none;
+  border-radius: 25px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: Poppins , sans-serif;
+  font-size: 1.2rem;
+  height: 50px;
+  margin: 1rem 0;
+  outline: none;
+  text-transform: uppercase;
+  transition: 0.5s;
+  width: 100%;
+}
+
+.btn-inc {
+  background-image: linear-gradient(to left, #048162, #03505a, #035036);
   background-size: 200%;
   border: none;
   border-radius: 25px;
@@ -128,7 +269,7 @@ form {
   display: flexbox;
   font-family: Poppins , sans-serif;
   font-size: 1.2rem;
-  height: 10vh;
+  min-height: 50px;
   outline: none;
   text-transform: uppercase;
   transition: 0.5s;
@@ -144,7 +285,7 @@ form {
   display: flexbox;
   font-family: Poppins , sans-serif;
   font-size: 1.2rem;
-  height: 10vh;
+  min-height: 50px;
   outline: none;
   text-transform: uppercase;
   transition: 0.5s;
@@ -155,6 +296,18 @@ form {
   background-position: right;
 }
 
+.btn-entregue:hover {
+  background-position: right;
+}
+
+.btn-dec:hover {
+  background-position: right;
+}
+
+.btn-inc:hover {
+  background-position: right;
+}
+
 .btn-product:hover {
   background-position: right;
 }
@@ -162,4 +315,35 @@ form {
 
 .btn-exit:hover {
   background-position: right;
+}
+
+@media ( max-width : 820px ) {
+
+  .container-products {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas: 'item item'
+      'item item'
+      'item item'
+      'item item'
+      'item item';
+    justify-items: center;
+    margin: 0 auto;
+  }
+}
+
+
+@media ( max-width : 520px ) {
+
+  .container-products {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas: 'item'
+      'item'
+      'item'
+      'item'
+      'item';
+    justify-items: center;
+    margin: 0 auto;
+  }
 }

@@ -70,27 +70,35 @@ function ProductCard({ product, setUpdateTotal }) {
   };
 
   return (
-    <section>
-      <div>
-        <div key={ productCard.id }>
-          <p
-            name={ productCard.name }
-            data-testid={ `customer_products__element-card-title-${productCard.id}` }
-          >
-            {productCard.name}
-          </p>
-          <p
-            name={ productCard.name }
-            data-testid={ `customer_products__element-card-price-${productCard.id}` }
-          >
-            { `R$ ${productCard.price.replace('.', ',')}` }
-          </p>
-          <img
-            name={ productCard.name }
-            data-testid={ `customer_products__img-card-bg-image-${productCard.id}` }
-            src={ productCard.url_image }
-            alt={ productCard.name }
-          />
+    <div>
+      <div key={ productCard.id } className="item">
+        <p
+          name={ productCard.name }
+          data-testid={ `customer_products__element-card-title-${productCard.id}` }
+        >
+          {productCard.name}
+        </p>
+        <p
+          name={ productCard.name }
+          data-testid={ `customer_products__element-card-price-${productCard.id}` }
+        >
+          { `R$ ${productCard.price.replace('.', ',')}` }
+        </p>
+        <img
+          name={ productCard.name }
+          data-testid={ `customer_products__img-card-bg-image-${productCard.id}` }
+          src={ productCard.url_image }
+          alt={ productCard.name }
+        />
+        <input
+          data-testid={ `customer_products__input-card-quantity-${productCard.id}` }
+          name={ productCard.name }
+          type="number"
+          value={ quantityState }
+          onChange={ handleChange }
+          className="input-quantity"
+        />
+        <div className="div-quantity">
           <button
             type="button"
             disabled={ productCard.quantity === 0 }
@@ -98,28 +106,23 @@ function ProductCard({ product, setUpdateTotal }) {
             name={ productCard.name }
             value={ productCard.price }
             onClick={ decrementar }
+            className="btn-dec"
           >
             -
           </button>
-          <input
-            data-testid={ `customer_products__input-card-quantity-${productCard.id}` }
-            name={ productCard.name }
-            type="number"
-            value={ quantityState }
-            onChange={ handleChange }
-          />
           <button
             type="button"
             data-testid={ `customer_products__button-card-add-item-${productCard.id}` }
             name={ productCard.name }
             value={ productCard.price }
             onClick={ incrementar }
+            className="btn-inc"
           >
             +
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

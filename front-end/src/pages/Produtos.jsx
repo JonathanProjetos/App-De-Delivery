@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { requestData, setToken, validLogin } from '../services/request';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
-import css from '../css/style.css';
 
 function Produtos() {
   const navigate = useNavigate();
@@ -51,7 +50,7 @@ function Produtos() {
   }, [updateTotal]);
 
   return (
-    <section style={ css } className="container">
+    <section>
       <Header />
       <button
         type="button"
@@ -65,7 +64,7 @@ function Produtos() {
           {total.toString().replace('.', ',')}
         </span>
       </button>
-      <div>
+      <div className="container-products">
         { products.map((product) => (
           <ProductCard
             key={ product.id }

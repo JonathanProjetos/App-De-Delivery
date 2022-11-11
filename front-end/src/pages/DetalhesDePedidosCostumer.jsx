@@ -102,8 +102,8 @@ function DetalheDePedidoCostumer() {
   return (
     <div>
       <Header />
-      <h1>Detalhe do Pedido</h1>
-      <div>
+      <div className="subtitle">
+        <h1>Detalhe do Pedido</h1>
         <p
           data-testid="customer_order_details__element-order-details-label-order-id"
         >
@@ -118,20 +118,21 @@ function DetalheDePedidoCostumer() {
         </p>
         <p
           data-testid={ 'customer_order_details__element'
-          + '-order-details-label-delivery-status' }
+            + '-order-details-label-delivery-status' }
         >
           {dataPedidoDetail && dataPedidoDetail[0].status}
         </p>
-        <button
-          data-testid="customer_order_details__button-delivery-check"
-          type="button"
-          onClick={ handleUpdateStatus }
-          disabled={ dataPedidoDetail && (
-            dataPedidoDetail[0].status !== 'Em Trânsito') }
-        >
-          MARCAR COMO ENTREGUE
-        </button>
       </div>
+      <button
+        data-testid="customer_order_details__button-delivery-check"
+        type="button"
+        onClick={ handleUpdateStatus }
+        disabled={ dataPedidoDetail && (
+          dataPedidoDetail[0].status !== 'Em Trânsito') }
+        className="btn-entregue"
+      >
+        MARCAR COMO ENTREGUE
+      </button>
       <table>
         <thead>
           <tr>

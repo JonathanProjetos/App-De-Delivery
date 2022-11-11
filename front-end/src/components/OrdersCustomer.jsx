@@ -15,7 +15,7 @@ function Orders({ role }) {
   }, [role]);
 
   return (
-    <div>
+    <div className="container-orders">
       {
         orders ? orders.map((order) => (
           <Link

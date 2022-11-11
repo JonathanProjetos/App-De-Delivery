@@ -2,19 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 function CustomerCard({ id, saleDate, totalPrice, status }) {
-  const CSS = {
-    border: '1px solid black',
-    borderRadius: '5px',
-    padding: '10px',
-    margin: '10px',
-  };
-
   const convertDateSale = new Date(saleDate).toLocaleDateString('pt-BR');
 
   return (
-    <div
-      style={ CSS }
-    >
+    <div className="item">
       <p data-testid={ `customer_orders__element-order-id-${id}` }>
         {`Pedido 000${String(id)}`}
       </p>
