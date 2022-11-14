@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestData, requestLogin, setToken, requestDelete } from '../services/request';
+import api from '../services';
 import Header from '../components/Header';
 import CadastroUserAdmin from '../components/CadastroUserAdmin';
 
@@ -12,7 +12,7 @@ function Gerenciamento() {
   useEffect(() => {
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
-    const validToken = setToken(token);
+    const validToken = api.setToken(token);
 
     if (validToken) {
       navigate('/login');
@@ -21,7 +21,7 @@ function Gerenciamento() {
 
   const deleteUser = async ({ target }) => {
     const { id } = target;
-    await requestDelete(`/admin/manage/${id}`);
+    await api.requestDelete(`/admin/manage/${id}`);
     const newListUser = users.filter((user) => user.id !== Number(id));
     setUsers(newListUser);
   };
@@ -30,12 +30,12 @@ function Gerenciamento() {
     const loginValidate = async () => {
       try {
         const token = localStorage.getItem('token');
-        const validate = await requestLogin('/login/validate', { token });
+        const validate = await api.requestLogin('/login/validate', { token });
         if (!validate) {
           localStorage.setItem('user', '');
           navigate('/login');
         }
-        const data = await requestData(ROUTER_ADMIN);
+        const data = await api.requestData(ROUTER_ADMIN);
 
         const result = data.filter((user) => user.role !== 'administrator');
         setUsers(result);

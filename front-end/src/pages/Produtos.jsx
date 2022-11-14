@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestData, setToken, validLogin } from '../services/request';
+import api from '../services';
 import ProductCard from '../components/ProductCard';
 import Header from '../components/Header';
 
@@ -16,14 +16,14 @@ function Produtos() {
     const { token } = getToken;
     const requestValid = async () => {
       try {
-        setToken(token);
-        const validToken = await validLogin('/login/validate');
+        api.setToken(token);
+        const validToken = await api.validLogin('/login/validate');
         if (!validToken) {
           localStorage.setItem('user', '');
           navigate('/login');
         }
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
     requestValid();
@@ -32,10 +32,10 @@ function Produtos() {
   useEffect(() => {
     const loginValidate = async () => {
       try {
-        const data = await requestData('/customer/products');
+        const data = await api.requestData('/customer/products');
         setProducts(data);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
       }
     };
     loginValidate();

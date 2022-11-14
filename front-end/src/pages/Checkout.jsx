@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { validLogin, setToken, requestSale } from '../services/request';
+import api from '../services';
 // import { pessoa } from '../mock/checkout';
 import Header from '../components/Header';
 
@@ -23,8 +23,8 @@ function Checkout() {
     const { token } = getToken;
     const requestValid = async () => {
       try {
-        setToken(token);
-        const validToken = await validLogin('/login/validate');
+        api.setToken(token);
+        const validToken = await api.validLogin('/login/validate');
         if (!validToken) {
           localStorage.setItem('user', '');
           navigate('/login');
@@ -77,8 +77,8 @@ function Checkout() {
       order: dataCart,
     };
 
-    setToken(getUser.token);
-    const { id } = await requestSale('/customer/sale', newOrder);
+    api.setToken(getUser.token);
+    const { id } = await api.requestSale('/customer/sale', newOrder);
     if (id) return navigate(`/customer/orders/${id}`);
   };
 
