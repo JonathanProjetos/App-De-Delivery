@@ -1,5 +1,4 @@
 const chai = require("chai");
-// const { describe } = require("mocha");
 const chaiHttp  = require('chai-http');
 const sinon = require("sinon");
 const app = require('../../api/app');

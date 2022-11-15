@@ -1,28 +1,69 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
-// import { waitFor } from '@testing-library/react';
-// import axios from 'axios';
-// import userEvent from '@testing-library/user-event';
+import { screen, waitFor } from '@testing-library/react';
 import App from '../App';
+import Produtos from '../pages/Produtos';
 import renderWithRouter from './renderWithRouter';
-// import userMock from './testsMocks/user';
 import localStorageMock from './testsMocks/localStorage.mock';
+import api from '../services';
 
 const BUTTON_PRODUTOS = 'customer_products__element-navbar-link-products';
 const BUTTON_MEUS_PEDIDOS = 'customer_products__element-navbar-link-orders';
 const BUTTON_SAIR = 'customer_products__element-navbar-link-logout';
 
+const CUSTOMER_PRODUCTS = '/customer/products';
+
 describe('Pagina Produtos', () => {
-  Object.defineProperty(window, 'localStorage', {
-    user: localStorageMock });
+  beforeEach(() => {
+    window.localStorage.setItem('user', JSON.stringify(localStorageMock));
+  });
+
+  afterEach(() => {
+    window.localStorage.clear();
+  });
 
   it('verifica a renderizacao do Header', () => {
-    renderWithRouter(<App />, ['/customer/products']);
-    
-    // const btnProdutos = screen.getByTestId(BUTTON_PRODUTOS);
-    // const btnPedidos = screen.getByTestId(BUTTON_MEUS_PEDIDOS);
-    // const btnSair = screen.getByTestId(BUTTON_SAIR);
+    renderWithRouter(<App />, [CUSTOMER_PRODUCTS]);
+    const btnProdutos = screen.getByTestId(BUTTON_PRODUTOS);
+    const btnPedidos = screen.getByTestId(BUTTON_MEUS_PEDIDOS);
+    const btnSair = screen.getByTestId(BUTTON_SAIR);
 
-    // expect(btnProdutos && btnPedidos && btnSair).toBeInTheDocument();
+    expect(btnProdutos && btnPedidos && btnSair).toBeInTheDocument();
+  });
+
+  it('verifica a renderizacao do botao de carrinho', () => {
+    renderWithRouter(<App />, [CUSTOMER_PRODUCTS]);
+    const btnCarrinho = screen.getByTestId('customer_products__button-cart');
+
+    expect(btnCarrinho).toBeInTheDocument();
+  });
+
+  // it('verifica a renderizacao do card de produtos', async () => {
+  //   renderWithRouter(<Produtos />, ['/customer/products']);
+  //   await waitFor(() => {
+  //     expect(screen.getByText('Skol Lata 250ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Heineken 600ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Antarctica Pilsen 300ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Brahma 600ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Skol 269ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Skol Beats Senses 313ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Becks 330ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Brahma Duplo Malte 350ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Becks 600ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Skol Beats Senses 269ml')).toBeInTheDocument();
+  //     expect(screen.getByText('Stella Artois 275ml')).toBeInTheDocument();
+  //   });
+  // });
+
+  it('testando se e possivel pega dados do localStorage', () => {
+    const total = 200.00;
+    window.localStorage.setItem('user', JSON.stringify(localStorageMock));
+    window.localStorage.setItem('total', total);
+    // api.requestLogin.mockResolvedValue(true);
+
+    renderWithRouter(<Produtos />, [CUSTOMER_PRODUCTS]);
+
+    const valorTotal = JSON.parse(localStorage.getItem('total'));
+
+    expect(valorTotal).toEqual(total);
   });
 });

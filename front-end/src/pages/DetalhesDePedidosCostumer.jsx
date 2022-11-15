@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestData, setToken, validLogin, updateStatus } from '../services/request';
+import api from '../services';
 import Header from '../components/Header';
 
 function DetalheDePedidoCostumer() {
@@ -11,15 +11,14 @@ function DetalheDePedidoCostumer() {
   const [sellerName, setSellerName] = useState('');
   const [total, setTotal] = useState('');
   const [dataProducts, setDataproducts] = useState('');
-
   useEffect(() => {
     // validação para token ao acessar a page
     const getToken = JSON.parse(localStorage.getItem('user'));
     const { token } = getToken;
     const requestValid = async () => {
       try {
-        setToken(token);
-        const validToken = await validLogin('/login/validate');
+        api.setToken(token);
+        const validToken = await api.validLogin('/login/validate');
         if (!validToken) {
           localStorage.setItem('user', '');
           navigate('/login');
@@ -38,7 +37,7 @@ function DetalheDePedidoCostumer() {
 
     const requestSaleData = async () => {
       try {
-        const data = await requestData(`/customer/orders/${lastSegment}`);
+        const data = await api.requestData(`/customer/orders/${lastSegment}`);
         const seller = Object.values(data[0].sale);
         setDataPedidoDetails(seller);
       } catch (err) {
@@ -82,8 +81,8 @@ function DetalheDePedidoCostumer() {
         status: 'Entregue',
         id: dataPedidoDetail && dataPedidoDetail[0].id,
       };
-      await updateStatus('/customer/orderStatus', { ...objectStatus });
-      const data = await requestData(`/customer/orders/${lastSegment}`);
+      await api.updateStatus('/customer/orderStatus', { ...objectStatus });
+      const data = await api.requestData(`/customer/orders/${lastSegment}`);
       const seller = Object.values(data[0].sale);
       setDataPedidoDetails(seller);
     } catch (err) {

@@ -18,7 +18,6 @@ const validateLogin = (dados) => {
   });  
 
   const { error, value } = login.validate(dados);
-
   if (error) {
     throw error;
   }

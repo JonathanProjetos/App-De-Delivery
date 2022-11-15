@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin, setToken, requestData } from '../services/request';
-import css from '../css/style.css';
+import api from '../services';
 
 function Login() {
   const navigate = useNavigate();
@@ -18,9 +17,12 @@ function Login() {
   const loginValidateToken = async (event) => {
     event.preventDefault();
     try {
-      const { token, role, name, email, id } = await requestLogin('/login', { ...input });
-      const dataSeller = await requestData('/customer/seller');
-      setToken(token);
+      const { token, role, name, email, id } = await api
+        .requestLogin('/login', { ...input });
+
+      const dataSeller = await api.requestData('/customer/seller');
+      console.log(dataSeller);
+      api.setToken(token);
       setRoleData(role);
       localStorage.setItem('user', JSON.stringify({ token, role, name, email, id }));
       localStorage.setItem('seller', JSON.stringify(dataSeller));

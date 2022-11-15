@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { requestLogin } from '../services/request';
-import css from '../css/style.css';
+import api from '../services';
 
 function Cadastro() {
   const navigate = useNavigate();
@@ -33,7 +32,7 @@ function Cadastro() {
     event.preventDefault();
     const { name, email, password } = input;
     try {
-      await requestLogin(
+      await api.requestLogin(
         '/register',
         { name, email, password },
       );
