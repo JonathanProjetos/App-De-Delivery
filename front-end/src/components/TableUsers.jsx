@@ -90,6 +90,7 @@ function TableUsers() {
                   data-testid={ `admin_manage__element-user-table-remove-${index}` }
                   id={ user.id }
                   onClick={ deleteUser }
+                  className="btn"
                 >
                   X
                 </button>

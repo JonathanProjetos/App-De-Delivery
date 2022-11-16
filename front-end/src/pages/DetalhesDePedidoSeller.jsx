@@ -121,8 +121,8 @@ function DetalheDePedidoSeller() {
   return (
     <div>
       <HeaderSeller />
-      <h1>Detalhe do Pedido</h1>
-      <div>
+      <div className="subtitle">
+        <h1>Detalhe do Pedido</h1>
         <p
           data-testid="seller_order_details__element-order-details-label-order-id"
         >
@@ -144,6 +144,7 @@ function DetalheDePedidoSeller() {
           onClick={ updateStatusPreparando }
           disabled={ dataPedido && (dataPedido[0]
             .status !== 'Pendente') }
+          className="btn-entregue"
         >
           PREPARAR PEDIDO
         </button>
@@ -154,67 +155,72 @@ function DetalheDePedidoSeller() {
           disabled={
             dataPedido && (dataPedido[0].status !== 'Preparando')
           }
+          className="btn-entregue"
         >
           SAIU PARA ENTREGA
         </button>
       </div>
-      <table>
-        <thead>
-          <tr>
-            {titulos.map((titulo) => (
-              <th key={ titulo }>{titulo}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {
-            dataProducts && dataProducts.map((data, index) => (
-              <tr key={ index }>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-item-number-${index}`
-                  }
-                >
-                  {(index + 1)}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-name-${index}`
-                  }
-                >
-                  {data.name}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-quantity-${index}`
-                  }
-                >
-                  {data.saleProduct.quantity}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-unit-price-${index}`
-                  }
-                >
-                  {`R$ ${data.price.replace('.', ',')}`}
-                </td>
-                <td
-                  data-testid={
-                    `seller_order_details__element-order-table-sub-total-${index}`
-                  }
-                >
-                  {`R$ ${total && total[index].toString().replace('.', ',')}`}
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <p data-testid="seller_order_details__element-order-total-price">
-        {`Total: R$ ${dataPedido && dataPedido[0]
-          .totalPrice.toString().replace('.', ',')}`}
-
-      </p>
+      <div className="table-all">
+        <table>
+          <thead>
+            <tr>
+              {titulos.map((titulo) => (
+                <th key={ titulo }>{titulo}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              dataProducts && dataProducts.map((data, index) => (
+                <tr key={ index }>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-item-number-${index}`
+                    }
+                  >
+                    {(index + 1)}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-name-${index}`
+                    }
+                  >
+                    {data.name}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-quantity-${index}`
+                    }
+                  >
+                    {data.saleProduct.quantity}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-unit-price-${index}`
+                    }
+                  >
+                    {`R$ ${data.price.replace('.', ',')}`}
+                  </td>
+                  <td
+                    data-testid={
+                      `seller_order_details__element-order-table-sub-total-${index}`
+                    }
+                  >
+                    {`R$ ${total && total[index].toString().replace('.', ',')}`}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <p
+          data-testid="seller_order_details__element-order-total-price"
+          className="table-total"
+        >
+          {`Total: R$ ${dataPedido && dataPedido[0]
+            .totalPrice.toString().replace('.', ',')}`}
+        </p>
+      </div>
     </div>
   );
 }

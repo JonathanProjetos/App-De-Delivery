@@ -106,8 +106,8 @@ function Checkout() {
   return (
     <div>
       <Header />
-      <h1>Finalizar Pedido</h1>
-      <div>
+      <h1 className="subtitle">Finalizar Pedido</h1>
+      <div className="table-all">
         <table>
           <thead>
             <tr>
@@ -163,6 +163,7 @@ function Checkout() {
                       data-testid={
                         `customer_checkout__element-order-table-remove-${index}`
                       }
+                      className="btn"
                     >
                       Remover
                     </button>
@@ -174,60 +175,62 @@ function Checkout() {
         </table>
         <h2
           data-testid="customer_checkout__element-order-total-price"
+          className="table-total"
         >
           {`Total: R$ ${total.toString().replace('.', ',')}`}
 
         </h2>
       </div>
-      <h1>Detalhes e Endereço para Entrega</h1>
-      <div>
-        <label htmlFor="1">
-          P.Vendedora Responsável:
-          <select
-            id="1"
-            data-testid="customer_checkout__select-seller"
-            value={ dados.option }
-            name="option"
-            onChange={ handleChange }
-          >
-            { dataSeller.map(({ name, id }) => (
-              <option id={ id } key={ id }>{ name }</option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor="2">
-          Endereço
-          <input
-            id="2"
-            type="text"
-            name="endereco"
-            data-testid="customer_checkout__input-address"
-            value={ dados.endereco }
-            onChange={ handleChange }
-            placeholder="Rua dos remotos, bairro AWS"
-          />
-        </label>
-        <label htmlFor="3">
-          Número
-          <input
-            id="3"
-            type="text"
-            name="numero"
-            data-testid="customer_checkout__input-address-number"
-            value={ dados.numero }
-            onChange={ handleChange }
-            placeholder="666"
-          />
-        </label>
-        <div>
-          <button
-            type="submit"
-            data-testid="customer_checkout__button-submit-order"
-            onClick={ createNewOrderRedirectDetail }
-          >
-            FINALIZAR PEDIDO
-          </button>
-        </div>
+      <h1 className="subtitle">Detalhes e Endereço para Entrega</h1>
+      <div className="address-content">
+        <form className="address-form">
+          <label htmlFor="1">
+            P.Vendedora Responsável:
+            <select
+              id="1"
+              data-testid="customer_checkout__select-seller"
+              value={ dados.option }
+              name="option"
+              onChange={ handleChange }
+            >
+              { dataSeller.map(({ name, id }) => (
+                <option id={ id } key={ id }>{ name }</option>
+              ))}
+            </select>
+          </label>
+          <label htmlFor="2">
+            Endereço
+            <input
+              id="2"
+              type="text"
+              name="endereco"
+              data-testid="customer_checkout__input-address"
+              value={ dados.endereco }
+              onChange={ handleChange }
+              placeholder="Rua dos remotos, bairro AWS"
+            />
+          </label>
+          <label htmlFor="3">
+            Número
+            <input
+              id="3"
+              type="text"
+              name="numero"
+              data-testid="customer_checkout__input-address-number"
+              value={ dados.numero }
+              onChange={ handleChange }
+              placeholder="666"
+            />
+          </label>
+        </form>
+        <button
+          type="submit"
+          data-testid="customer_checkout__button-submit-order"
+          onClick={ createNewOrderRedirectDetail }
+          className="btn-entregue"
+        >
+          FINALIZAR PEDIDO
+        </button>
       </div>
     </div>
   );

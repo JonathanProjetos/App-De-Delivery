@@ -196,6 +196,21 @@ img {
   text-align: center;
 }
 
+.address-form {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.address-content {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .register-container {
   align-content: center;
   align-items: center;
