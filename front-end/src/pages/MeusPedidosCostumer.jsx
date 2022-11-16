@@ -33,6 +33,7 @@ function MeusPedidosCostumer() {
       { roleUser ? (
         <div>
           <Header />
+          <h1 className="subtitle">Lista de Pedidos</h1>
           <Orders role={ roleUser } />
         </div>
       ) : <p>Carregando...</p> }

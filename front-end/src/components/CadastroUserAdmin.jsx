@@ -40,11 +40,9 @@ function CadastroUserAdmin({ setUsers }) {
 
   return (
     <section>
-      <div>
-        <h1>Cadastro</h1>
+      <div className="login-content">
         <form>
-          <label htmlFor="nome">
-            Nome:
+          <label htmlFor="nome" className="input-div one">
             <input
               data-testid="admin_manage__input-name"
               id="nome"
@@ -53,10 +51,10 @@ function CadastroUserAdmin({ setUsers }) {
               type="text"
               placeholder="Nome e sobrenome"
               onChange={ handleChange }
+              className="input"
             />
           </label>
-          <label htmlFor="email">
-            Email:
+          <label htmlFor="email" className="input-div one">
             <input
               data-testid="admin_manage__input-email"
               value={ input.email }
@@ -65,10 +63,10 @@ function CadastroUserAdmin({ setUsers }) {
               type="email"
               placeholder="seu-email@site.com.br"
               onChange={ handleChange }
+              className="input"
             />
           </label>
-          <label htmlFor="password">
-            Senha:
+          <label htmlFor="password" className="input-div pass">
             <input
               data-testid="admin_manage__input-password"
               value={ input.password }
@@ -77,6 +75,7 @@ function CadastroUserAdmin({ setUsers }) {
               type="password"
               placeholder="Senha"
               onChange={ handleChange }
+              className="input"
             />
           </label>
           <select
@@ -93,6 +92,7 @@ function CadastroUserAdmin({ setUsers }) {
             type="submit"
             disabled={ !validateFields() }
             onClick={ handleSubmit }
+            className="btn"
           >
             CADASTRAR
           </button>

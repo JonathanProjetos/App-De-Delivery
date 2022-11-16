@@ -23,33 +23,30 @@ function HeaderSeller() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="product-container">
+      <p
+        data-testid="customer_products__element-navbar-user-full-name"
+        className="client-name"
+      >
+        {nameUser}
+      </p>
+      <div className="btn-container">
         <button
           type="button"
           data-testid="customer_products__element-navbar-link-orders"
           onClick={ redirectOrder }
+          className="btn-product"
         >
           Pedidos
         </button>
-      </div>
-      <div>
-        <div>
-          <div>
-            <p
-              data-testid="customer_products__element-navbar-user-full-name"
-            >
-              {nameUser}
-            </p>
-          </div>
-          <button
-            type="button"
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ logOut }
-          >
-            Sair
-          </button>
-        </div>
+        <button
+          type="button"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ logOut }
+          className="btn-exit"
+        >
+          Sair
+        </button>
       </div>
     </div>
   );

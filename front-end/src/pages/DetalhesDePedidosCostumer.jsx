@@ -132,63 +132,68 @@ function DetalheDePedidoCostumer() {
       >
         MARCAR COMO ENTREGUE
       </button>
-      <table>
-        <thead>
-          <tr>
-            {titulos.map((titulo) => (
-              <th key={ titulo }>{titulo}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {
-            dataProducts && dataProducts.map((data, index) => (
-              <tr key={ index }>
-                <td
-                  data-testid={
-                    `customer_order_details__element-order-table-item-number-${index}`
-                  }
-                >
-                  {(index + 1)}
-                </td>
-                <td
-                  data-testid={
-                    `customer_order_details__element-order-table-name-${index}`
-                  }
-                >
-                  {data.name}
-                </td>
-                <td
-                  data-testid={
-                    `customer_order_details__element-order-table-quantity-${index}`
-                  }
-                >
-                  {data.saleProduct.quantity}
-                </td>
-                <td
-                  data-testid={
-                    `customer_order_details__element-order-table-unit-price-${index}`
-                  }
-                >
-                  {`R$ ${data.price.replace('.', ',')}`}
-                </td>
-                <td
-                  data-testid={
-                    `customer_order_details__element-order-table-sub-total-${index}`
-                  }
-                >
-                  {`R$ ${total && total[index].toString().replace('.', ',')}`}
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <p data-testid="customer_order_details__element-order-total-price">
-        {`Total: R$ ${dataPedidoDetail && dataPedidoDetail[0]
-          .totalPrice.toString().replace('.', ',')}`}
+      <div className="table-all">
+        <table>
+          <thead>
+            <tr>
+              {titulos.map((titulo) => (
+                <th key={ titulo }>{titulo}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {
+              dataProducts && dataProducts.map((data, index) => (
+                <tr key={ index }>
+                  <td
+                    data-testid={
+                      `customer_order_details__element-order-table-item-number-${index}`
+                    }
+                  >
+                    {(index + 1)}
+                  </td>
+                  <td
+                    data-testid={
+                      `customer_order_details__element-order-table-name-${index}`
+                    }
+                  >
+                    {data.name}
+                  </td>
+                  <td
+                    data-testid={
+                      `customer_order_details__element-order-table-quantity-${index}`
+                    }
+                  >
+                    {data.saleProduct.quantity}
+                  </td>
+                  <td
+                    data-testid={
+                      `customer_order_details__element-order-table-unit-price-${index}`
+                    }
+                  >
+                    {`R$ ${data.price.replace('.', ',')}`}
+                  </td>
+                  <td
+                    data-testid={
+                      `customer_order_details__element-order-table-sub-total-${index}`
+                    }
+                  >
+                    {`R$ ${total && total[index].toString().replace('.', ',')}`}
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <p
+          data-testid="customer_order_details__element-order-total-price"
+          className="table-total"
+        >
+          {`Total: R$ ${dataPedidoDetail && dataPedidoDetail[0]
+            .totalPrice.toString().replace('.', ',')}`}
 
-      </p>
+        </p>
+      </div>
     </div>
   );
 }

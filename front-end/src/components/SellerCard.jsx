@@ -1,32 +1,52 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 function SellerCard({
   id, saleDate, totalPrice, status, deliveryAddress, deliveryNumber }) {
-  const CSS = {
-    border: '1px solid black',
-    borderRadius: '5px',
-    padding: '10px',
-    margin: '10px',
-  };
+  const [deliveryStatus, setDeliveryStatus] = useState('');
+
+  useEffect(() => {
+    console.log('status: ', status);
+    switch (status) {
+    case 'Entregue':
+      setDeliveryStatus('orderEntregue');
+      break;
+    case 'Preparando':
+      setDeliveryStatus('orderTransito');
+      break;
+    case 'Pendente':
+      setDeliveryStatus('orderPendente');
+      break;
+    default:
+      break;
+    }
+  }, [status]);
 
   return (
-    <div style={ CSS }>
-      <p data-testid={ `seller_orders__element-order-id-${id}` }>
+    <div className="item-card">
+      <p
+        data-testid={ `seller_orders__element-order-id-${id}` }
+        className="orderNum"
+      >
         {`Pedido ${String(id)}`}
       </p>
-      <p data-testid={ `seller_orders__element-delivery-status-${id}` }>
+      <p
+        data-testid={ `seller_orders__element-delivery-status-${id}` }
+        className={ deliveryStatus }
+      >
         {status}
-      </p>
-      <p data-testid={ `seller_orders__element-order-date-${id}` }>
-        {saleDate}
-      </p>
-      <p data-testid={ `seller_orders__element-card-price-${id}` }>
-        {`R$ ${String(totalPrice).replace('.', ',')}`}
       </p>
       <p data-testid={ `seller_orders__element-card-address-${id}` }>
         {`Endereço: ${deliveryAddress}, ${deliveryNumber}`}
       </p>
+      <div className="orderDetail">
+        <p data-testid={ `seller_orders__element-order-date-${id}` }>
+          {saleDate}
+        </p>
+        <p data-testid={ `seller_orders__element-card-price-${id}` }>
+          {`R$ ${String(totalPrice).replace('.', ',')}`}
+        </p>
+      </div>
     </div>
   );
 }

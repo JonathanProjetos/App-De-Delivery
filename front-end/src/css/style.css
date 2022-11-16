@@ -4,6 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none;
 }
 
 body {
@@ -28,11 +29,27 @@ body {
   font-family: cursive;
   font-size: 1.2rem;
   justify-content: center;
+  margin-bottom: 2px;
   min-height: 50px;
   outline: none;
   text-transform: uppercase;
   transition: 0.5s;
   width: 100%;
+}
+
+.table-all {
+  display: inline-flex;
+  flex-direction: column;
+  font-family: cursive;
+  margin-bottom: 0.5em;
+  padding: 0.7em;
+  table-layout: fixed;
+  text-align: center;
+  width: 100%;
+}
+
+.table-total {
+  margin-top: 25px;
 }
 
 .client-name {
@@ -64,11 +81,16 @@ body {
 }
 
 .container-orders {
+  align-items: center;
+  color: #02498b;
   display: grid;
+  flex-direction: row;
+  font-family: cursive;
   grid-gap: 10px;
   grid-template-areas: 'item item item item'
     'item item item item'
     'item item item item';
+  justify-content: center;
   justify-items: center;
   margin: 0 auto;
 }
@@ -97,6 +119,65 @@ img {
   justify-content: center;
   min-height: 250px;
   min-width: 250px;
+}
+
+.item-card {
+  align-items: center;
+  border: 1px black solid;
+  color: #02498b;
+  display: inline-flex;
+  flex-direction: row;
+  font-family: cursive;
+  justify-content: center;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.orderNum {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.orderEntregue {
+  align-items: center;
+  background-color: #013024;
+  color: #faf6f6;
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.orderTransito {
+  align-items: center;
+  background-color: #f52207;
+  color: #faf6f6;
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.orderPendente {
+  align-items: center;
+  background-color: #eeb808;
+  color: #faf6f6;
+  display: flex;
+  justify-content: center;
+  min-height: 100px;
+  min-width: 100px;
+}
+
+.orderDetail {
+  align-items: center;
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100px;
+  min-width: 100px;
 }
 
 .div-quantity {
@@ -330,12 +411,37 @@ form {
     justify-items: center;
     margin: 0 auto;
   }
+
+  .container-orders {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas: 'item item'
+      'item item'
+      'item item'
+      'item item'
+      'item item';
+    justify-items: center;
+    margin: 0 auto;
+  }
+
 }
 
 
 @media ( max-width : 520px ) {
 
   .container-products {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-areas: 'item'
+      'item'
+      'item'
+      'item'
+      'item';
+    justify-items: center;
+    margin: 0 auto;
+  }
+
+  .container-orders {
     display: grid;
     grid-gap: 20px;
     grid-template-areas: 'item'
