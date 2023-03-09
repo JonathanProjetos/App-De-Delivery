@@ -15,11 +15,10 @@ A App de delivery é uma aplicação full-stack desenvolvida em React e Node.js,
  - [Lint](#lint)
  
 ## Preview
-A aplicação foi desenvolvida com design responsivo e pensada para ser utilizada em dispositivos móveis. Sugerimos a vizualiação em resolução `360x640` pixels para a melhor experiência possível.
 
 **Visualização:**
 
-![appReceitas](https://user-images.githubusercontent.com/98184355/221451995-4efe8014-ce9e-4e2f-92f8-87365750df13.gif)
+![alt text](Front-end/src/images/foto.png)
 
 
 ## Contexto
