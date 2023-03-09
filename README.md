@@ -56,7 +56,10 @@ git clone git@github.com:JonathanProjetos/App-De-Delivery.git
 cd App-De-Delivery
 npm install
 npm start
+
+obs: o proprio script start executará tanto o back-end quanto o front-end.
 ```
+
 
 ### Arquivo Evn
 - Dentro da pasta back-end existe o arquivo .env.example nele será nescessário oferecer a senha do seu mysql.
