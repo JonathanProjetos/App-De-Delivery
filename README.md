@@ -1,11 +1,11 @@
-# Bem-vindo ao Api de delivery
+# Bem-vindo ao App de delivery
 A App de delivery é uma aplicação full-stack desenvolvida em React e Node.js, produzida em grupo com a proposta de ser um e-commerce semelhante ao iFood. Nesta aplicação, é oferecido acesso para clientes, vendedores e administradores. Essas três funções definem o que será exibido ou acessado pelo front-end. Após logar como cliente, será possível adicionar, remover e finalizar o pedido. Após finalizar o pedido, ele será definido como pendente, aguardando a atualização do vendedor para o status "Preparando", depois atualizado para "Em Trânsito" e, novamente no cliente, atualizado como entregue. Todas as fases do processo podem ser vistas abrindo dois navegadores, sendo um deles anônimo.
 
  
 </details>
 
 ## Sumário
-- [Bem-vindo ao projeto  007 Foods](#Bem-vindo-ao-Api-de-delivery)
+- [Bem-vindo ao Api de delivery](#Bem-vindo-ao-App-de-delivery)
 - [Preview](#preview)
 - [Contexto](#contexto)
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
