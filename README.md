@@ -18,7 +18,7 @@ A App de delivery é uma aplicação full-stack desenvolvida em React e Node.js,
 
 **Visualização:**
 
-![alt text](Front-end/src/images/foto.png)
+![alt text](Front-end/src/images/foto1.png)
 
 
 ## Contexto
