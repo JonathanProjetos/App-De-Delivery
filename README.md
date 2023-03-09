@@ -5,12 +5,11 @@ A App de delivery é uma aplicação full-stack desenvolvida em React e Node.js,
 </details>
 
 ## Sumário
-- [Bem-vindo ao Api de delivery](#Bem-vindo-ao-App-de-delivery)
+- [Bem-vindo ao App de delivery](#Bem-vindo-ao-App-de-delivery)
 - [Preview](#preview)
 - [Contexto](#contexto)
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
-- [Notas](#notas)
  - [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
  - [Lint](#lint)
  
@@ -39,6 +38,10 @@ Este projeto utiliza as seguintes tecnologias e ferramentas:
 - [React.js](https://reactjs.org/docs/getting-started.html) | Biblioteca para criar interfaces de usuário.
 - [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) | Linguagem de estilo.
 - [Context API](https://pt-br.reactjs.org/docs/context.html) | API utilizada para gerenciamento de estado.
+- [NodeJS](https://nodejs.org/en/) | Plataforma de execução runtime baseda em javascript 
+- [Mysql](https://www.mysql.com/) | Banco de dados relacional
+- [Sequelize](https://sequelize.org/docs/v6/getting-started/) | ORM Object-Relational Mapping para nodejs
+- [Express](https://expressjs.com/pt-br/) | Framework web para nodejs
 - [Trello](https://trello.com/) | Ferramenta de gerenciamento de tarefas.
 
 O React.js foi escolhido por ser uma das bibliotecas mais populares e amplamente utilizadas para criar interfaces de usuário. Além disso, o React.js é fácil de aprender e possui uma grande comunidade de desenvolvedores, o que torna mais fácil encontrar soluções para problemas comuns. A Context API foi utilizada para gerenciamento de estado, permitindo que informações importantes da aplicação sejam compartilhadas entre diferentes componentes, sem a necessidade de passá-las manualmente através de props. Isso torna o código mais limpo e fácil de entender. O Trello foi utilizado para gerenciamento de tarefas, seguindo metodologias ágeis durante o desenvolvimento. O Node.js foi incorporado para padronizar a linguagem tanto no front-end quanto no back-end e obter os benefícios da escalabilidade e eficiência, pois ele é capaz de lidar com vários tráfegos sem bloqueio e lida com solicitações com baixo consumo de recursos.
