@@ -28,7 +28,7 @@ O __App-De-Delivery__ é uma ferramenta que acessa a bases de dados, é permite 
 - Visualizar detalhes do pedido;
 - Atualizar o status do pedido;
 
-### Quando administrador
+__Quando logado como administrador__
 
 - É possivel cadastrar vendedores e clientes;
 
@@ -37,7 +37,7 @@ O __App-De-Delivery__ é uma ferramenta que acessa a bases de dados, é permite 
 Este projeto utiliza as seguintes tecnologias e ferramentas:
 
 - [React.js](https://reactjs.org/docs/getting-started.html) | Biblioteca para criar interfaces de usuário.
-- [CSS]((https://developer.mozilla.org/pt-BR/docs/Web/CSS)) | Linguagem de estilo.
+- [CSS](https://developer.mozilla.org/pt-BR/docs/Web/CSS) | Linguagem de estilo.
 - [Context API](https://pt-br.reactjs.org/docs/context.html) | API utilizada para gerenciamento de estado.
 - [Trello](https://trello.com/) | Ferramenta de gerenciamento de tarefas.
 
@@ -54,16 +54,31 @@ cd App-De-Delivery
 npm install
 npm start
 ```
-### Evn
+
+### Arquivo Evn
 - Dentro da pasta back-end existe o arquivo .env.example nele será nescessário oferecer a senha do seu mysql.
 
-## Notas
-A aplicação foi desenvolvida utilizando o conceito de __mobile first__, ou seja, a interface foi projetada primeiramente para dispositivos móveis.
+
+### Acesso cadastrado
+- customer 
+```
+login: zebirita@email.com
+senha: $#zebirita#$
+```
+- seller
+```
+login: fulana@deliveryapp.com
+senha: fulana@123
+```
+- admin
+```
+login: adm@deliveryapp.com
+senha: --adm2@21!!--
+```
 
 ### Git, GitHub e Histórico de Commits
 Este projeto utilizou a [Especificação de Commits Convencionais](https://www.conventionalcommits.org/en/v1.0.0/), com alguns tipos da [convenção Angular](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines). Além disso, foi utilizado o pacote [conventional-commit-cli](https://www.npmjs.com/package/conventional-commit-cli) para ajudar a seguir a convenção de commits. É importante utilizar a convenção de commits em projetos para manter o histórico de commits organizado e facilitar a leitura e o entendimento do que foi desenvolvido.
 
-No desenvolvimento da aplicação foi realizado utilizando o Git para controle de versão e o GitHub como repositório remoto. Foram criadas branches para cada funcionalidade implementada e, posteriormente, mergeadas à branch principal.
 
 ### Metodologias Ágeis
 Durante o desenvolvimento deste projeto, foram utilizadas metodologias ágeis, que são práticas que valorizam a interação e colaboração entre os membros de uma equipe de desenvolvimento, visando uma entrega mais rápida e eficiente do projeto. A utilização dessas práticas é especialmente importante em projetos em grupo, pois ajuda a manter a equipe alinhada e a evitar atrasos e retrabalhos desnecessários. Para saber mais sobre as metodologias ágeis, confira o [Manifesto Ágil](https://agilemanifesto.org/).
