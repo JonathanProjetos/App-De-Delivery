@@ -22,43 +22,40 @@ A App de delivery é uma aplicação full-stack desenvolvida em React e Node.js,
 
 
 ## Contexto
-A __aplicação 007 Foods__ é uma ferramenta que acessa as bases de dados de receitas de comidas e bebidas, permitindo ao usuário:
+O __App-De-Delivery__ é uma ferramenta que acessa a bases de dados, é permite aos usuários:
 - Fazer login;
-- Buscar por receitas por nome, ingrediente, primeira letra, tipo de drink ou refeição;
-- Visualizar detalhes das receitas, com vídeo de execução, sugestões de acompanhamento e informações nutricionais;
-- Favoritar ou compartilhar receitas;
-- Acessar a seção de receitas prontas e favoritas após o login;
-- Explorar as receitas por nacionalidade ou ingrediente, ou encontrar sugestões aleatórias de pratos e bebidas;
-- Utilizar o Local Storage para manter informações das receitas favoritas, iniciadas e finalizadas.
+- Buscar por bebidas;
+- Visualizar detalhes do pedido;
+- Atualizar o status do pedido;
+
+### Quando administrador
+
+- É possivel cadastrar vendedores e clientes;
 
 ## Tecnologias e Ferramentas Utilizadas
 
 Este projeto utiliza as seguintes tecnologias e ferramentas:
 
 - [React.js](https://reactjs.org/docs/getting-started.html) | Biblioteca para criar interfaces de usuário.
-- [Styled Components](https://styled-components.com/) | Biblioteca para estilização do CSS.
-- [API de comidas](https://www.themealdb.com/api.php) | API utilizada para obter informações sobre receitas de comidas.
-- [API de bebidas](https://www.thecocktaildb.com/api.php) | API utilizada para obter informações sobre receitas de bebidas.
+- [CSS]((https://developer.mozilla.org/pt-BR/docs/Web/CSS)) | Linguagem de estilo.
 - [Context API](https://pt-br.reactjs.org/docs/context.html) | API utilizada para gerenciamento de estado.
 - [Trello](https://trello.com/) | Ferramenta de gerenciamento de tarefas.
 
-O React.js foi escolhido por ser uma das bibliotecas mais populares e amplamente utilizadas para criar interfaces de usuário. Além disso, o React.js é fácil de aprender e possui uma grande comunidade de desenvolvedores, o que torna mais fácil encontrar soluções para problemas comuns. O Styled Components foi escolhido porque permite que os desenvolvedores escrevam o CSS em formato de componente, o que torna o código mais legível e fácil de entender. As APIs de comidas e bebidas foram escolhidas por fornecerem informações detalhadas e variadas sobre receitas, o que enriquece a experiência do usuário na aplicação. A Context API foi utilizada para gerenciamento de estado, permitindo que informações importantes da aplicação sejam compartilhadas entre diferentes componentes, sem a necessidade de passá-las manualmente através de props. Isso torna o código mais limpo e fácil de entender. O Trello foi utilizado para gerenciamento de tarefas, seguindo metodologias ágeis durante o desenvolvimento.
+O React.js foi escolhido por ser uma das bibliotecas mais populares e amplamente utilizadas para criar interfaces de usuário. Além disso, o React.js é fácil de aprender e possui uma grande comunidade de desenvolvedores, o que torna mais fácil encontrar soluções para problemas comuns. A Context API foi utilizada para gerenciamento de estado, permitindo que informações importantes da aplicação sejam compartilhadas entre diferentes componentes, sem a necessidade de passá-las manualmente através de props. Isso torna o código mais limpo e fácil de entender. O Trello foi utilizado para gerenciamento de tarefas, seguindo metodologias ágeis durante o desenvolvimento. O Node.js foi incorporado para padronizar a linguagem tanto no front-end quanto no back-end e obter os benefícios da escalabilidade e eficiência, pois ele é capaz de lidar com vários tráfegos sem bloqueio e lida com solicitações com baixo consumo de recursos.
 
 ## Instalação e Execução
 ### Download do projeto
 ```
-git clone git@github.com:imsamuelcovalero/Project-Recipes-App.git
+git clone git@github.com:JonathanProjetos/App-De-Delivery.git
 ```
 ### Instalar dependências
 ```
-cd Project-Recipes-App
+cd App-De-Delivery
 npm install
-```
-### Rodar a aplicação
-```
-cd Project-Recipes-App
 npm start
 ```
+### Evn
+- Dentro da pasta back-end existe o arquivo .env.example nele será nescessário oferecer a senha do seu mysql.
 
 ## Notas
 A aplicação foi desenvolvida utilizando o conceito de __mobile first__, ou seja, a interface foi projetada primeiramente para dispositivos móveis.
